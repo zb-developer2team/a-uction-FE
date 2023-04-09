@@ -22,18 +22,15 @@ export default function Link({ url, type, className, ...props }: LinkProps) {
   };
   return (
     <div>
-      <span className="text-base text-Gray mr-2">
+      <span className="text-base text-Gray mr-2 font-line-seed-sans-kr">
         {status[type].description}
       </span>
       <a
         href={url}
-        className="text-base text-Orange underline decoration-solid underline-offset-4 decoration-2"
+        className="text-base text-Orange underline decoration-solid underline-offset-4 decoration-2 font-line-seed-sans-kr"
       >
         {status[type].label}
       </a>
     </div>
   );
 }
-
-//아직 회원이 아니신가요? 회원가입
-// 이미 회원이신가요? 로그인
