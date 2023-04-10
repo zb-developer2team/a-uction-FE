@@ -4,13 +4,14 @@ about: Suggest an idea for this project
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
-### Discription
-> discription
+### Description
+
+> description
 
 ### Progress
+
 - [ ] todo1
 - [ ] todo2
 - [ ] todo3
