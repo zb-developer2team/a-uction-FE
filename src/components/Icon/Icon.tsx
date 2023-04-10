@@ -4,21 +4,11 @@ import lock from '../../assets/lock.png';
 import search from '../../assets/search.png';
 
 export interface IconProps {
-  width: number;
-  height: number;
-  color: string;
   type: 'user' | 'lock' | 'search';
   className: string;
 }
 
-export default function Icon({
-  width,
-  height,
-  color,
-  type,
-  className,
-  ...props
-}: IconProps) {
+export default function Icon({ type, className, ...props }: IconProps) {
   const icons = {
     user,
     lock,
@@ -29,10 +19,7 @@ export default function Icon({
     <div className={twMerge(className)}>
       <img
         src={icons[type]}
-        width={width}
-        height={height}
-        color={color}
-        className={className}
+        className={twMerge('w-[30px] h-[30px]', className)}
         {...props}
       />
     </div>
