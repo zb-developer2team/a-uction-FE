@@ -1,5 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import Modal from './Modal';
+import Modal, { ModalProps } from './Modal';
 
 const meta = {
   component: Modal,
@@ -14,10 +14,9 @@ const meta = {
 
 export default meta;
 
-const Template: StoryFn<typeof Modal> = (args) => <Modal {...args} />;
+const Template: StoryFn<ModalProps> = (args) => <Modal {...args} />;
 
-export const SmallModal = Template.bind({});
-SmallModal.args = {};
-
-export const LargeModal = Template.bind({});
-LargeModal.args = {};
+export const BasicModal = Template.bind({});
+BasicModal.args = {
+  size: 'small',
+};
