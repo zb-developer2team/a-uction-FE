@@ -1,5 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import SampleImage from '../../assets/SampleImage.png';
+import User from '../../assets/user.png';
+import Icon from '../Icon/Icon';
 
 export interface ImageButtonProps {
   src: string;
@@ -14,7 +16,7 @@ export default function ImageButton({
   ...props
 }: ImageButtonProps) {
   const imageState = {
-    empty: 'w-[30px] h-[30px] border-2 bg-White border-Orange',
+    empty: User,
     image: SampleImage,
   };
 
@@ -28,9 +30,14 @@ export default function ImageButton({
       ) : (
         <div
           className={twMerge(
-            'w-[30px] h-[30px] bg-White border-Orange border-[1px] rounded-full'
+            'w-[30px] h-[30px] bg-White border-Orange border-[1px] rounded-full '
           )}
-        ></div>
+        >
+          <Icon
+            type="user"
+            className={twMerge('w-[20px] h-[20px] mx-auto my-1')}
+          />
+        </div>
       )}
     </div>
   );
