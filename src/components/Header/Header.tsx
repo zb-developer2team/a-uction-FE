@@ -7,7 +7,7 @@ export interface HeaderProps {
   className?: string;
 }
 
-export default function Image({ type, className, ...props }: HeaderProps) {
+export default function Header({ type, className, ...props }: HeaderProps) {
   return (
     <div className={twMerge(`font-line-seed-sans-kr`, className)} {...props}>
       <HeaderTop type={type} />

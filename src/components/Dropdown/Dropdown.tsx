@@ -7,7 +7,7 @@ export interface ImageProps {
   className?: string;
 }
 
-export default function Image({ type, className, ...props }: ImageProps) {
+export default function Dropdown({ type, className, ...props }: ImageProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const category = {
