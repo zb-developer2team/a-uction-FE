@@ -37,9 +37,8 @@ export default function Modal({ size, className, ...props }: ModalProps) {
             </span>
             {size === 'large' && <div className="mt-96" />}
             <Button
-              type="active"
               size="small"
-              color="Orange"
+              type="active"
               label={size === 'small' ? '확인' : '닫기'}
               onClick={handleButtonClick}
             />
