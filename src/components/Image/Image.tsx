@@ -1,12 +1,15 @@
 import { twMerge } from 'tailwind-merge';
-import logo from '../../assets/react.svg';
 
 export interface ImageProps {
+  src: string;
+  alt: string;
   size?: 'sm' | 'lg';
   className?: string;
 }
 
 export default function Image({
+  src,
+  alt,
   size = 'sm',
   className,
   ...props
@@ -18,8 +21,8 @@ export default function Image({
   return (
     <div className={twMerge(`${imageSize[size]} bg-LightGray`, className)}>
       <img
-        src={logo}
-        alt={'react logo 이미지입니다.'}
+        src={`${src}`}
+        alt={`${alt}`}
         className={twMerge(`${imageSize[size]} bg-LightGray`, className)}
         {...props}
       />
