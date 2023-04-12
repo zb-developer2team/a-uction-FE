@@ -7,12 +7,7 @@ export interface ModalProps {
   className?: string;
 }
 
-export default function Modal({
-  size,
-  className,
-
-  ...props
-}: ModalProps) {
+export default function Modal({ size, className, ...props }: ModalProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   const modalSize = {
@@ -42,7 +37,7 @@ export default function Modal({
             </span>
             {size === 'large' && <div className="mt-96" />}
             <Button
-              type="abled"
+              type="active"
               size="small"
               color="Orange"
               label={size === 'small' ? '확인' : '닫기'}
