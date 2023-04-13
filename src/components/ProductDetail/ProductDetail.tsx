@@ -77,8 +77,8 @@ export default function ProductDetail({
               <span className="mr-6 font-bold">시작가</span>
               <span>{startPrice}</span>
             </p>
-            {children}
           </div>
+          {children}
         </div>
       </div>
     </>
