@@ -9,6 +9,7 @@ export interface ProductDetailProps {
   auctionPeriod: string; //추후에 어떤 식으로 데이터를 받아올지 몰라서 string으로 우선 넣었습니다.
   price: string;
   startPrice: string;
+  children?: string;
   className?: string;
 }
 
@@ -20,6 +21,7 @@ export default function ProductDetail({
   auctionPeriod,
   price,
   startPrice,
+  children,
   className,
 }: ProductDetailProps) {
   return (
@@ -75,6 +77,7 @@ export default function ProductDetail({
               <span className="mr-6 font-bold">시작가</span>
               <span>{startPrice}</span>
             </p>
+            {children}
           </div>
         </div>
       </div>
