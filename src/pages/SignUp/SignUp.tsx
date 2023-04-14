@@ -43,7 +43,12 @@ export default function SignUp({ className, ...props }: LoginProps) {
         <form className="flex-col justify-center">
           <div className="relative">
             <label className={twMerge('sr-only')}>이메일</label>
-            <Input type={'text'} placeholder={'email'} className="mb-10" />
+            <Input
+              type={'text'}
+              placeholder={'email'}
+              imageType={'email'}
+              className="mb-10"
+            />
             <Button
               type={'disabled'}
               label={'중복체크'}
@@ -57,6 +62,7 @@ export default function SignUp({ className, ...props }: LoginProps) {
             <Input
               type={'text'}
               placeholder={'password'}
+              imageType={'password'}
               maxLength={12}
               minLength={6}
               className="mb-10"
@@ -67,6 +73,7 @@ export default function SignUp({ className, ...props }: LoginProps) {
             <Input
               type={'text'}
               placeholder={'passwordCheck'}
+              imageType={'password'}
               maxLength={12}
               minLength={6}
               className="mb-10"
@@ -74,11 +81,21 @@ export default function SignUp({ className, ...props }: LoginProps) {
           </div>
           <div>
             <label className={twMerge('sr-only')}>비밀번호 확인</label>
-            <Input type={'text'} placeholder={'name'} className="mb-10" />
+            <Input
+              type={'text'}
+              placeholder={'name'}
+              imageType={'name'}
+              className="mb-10"
+            />
           </div>
           <div className="relative">
             <label className={twMerge('sr-only')}>전화번호</label>
-            <Input type={'text'} placeholder={'number'} className="mb-[50px]" />
+            <Input
+              type={'text'}
+              placeholder={'number'}
+              imageType={'number'}
+              className="mb-[50px]"
+            />
             <Button
               type={'disabled'}
               label={'인증하기'}
