@@ -18,12 +18,5 @@ const Template: StoryFn<typeof RadioButton> = (args) => (
   <RadioButton {...args} />
 );
 
-export const NewProduct = Template.bind({});
-NewProduct.args = {
-  type: 'new',
-};
-
-export const UsedProduct = Template.bind({});
-UsedProduct.args = {
-  type: 'used',
-};
+export const Radio = Template.bind({});
+Radio.args = {};
