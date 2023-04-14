@@ -15,7 +15,12 @@ export default function Product({
   className,
 }: ProductProps) {
   return (
-    <div className={twMerge(`w-[240px] font-line-seed-sans-kr`, className)}>
+    <div
+      className={twMerge(
+        `w-[240px] font-line-seed-sans-kr cursor-pointer`,
+        className
+      )}
+    >
       <Image
         size={'sm'}
         src={'/src/assets/SampleImage.png'}
