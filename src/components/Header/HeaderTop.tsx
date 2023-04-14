@@ -42,6 +42,7 @@ export default function HeaderTop({
           type={'search'}
           placeholder={'searchProduct'}
           className="border-2 rounded-lg bg-left-top pl-[60px]"
+          imageType={'none'}
         />
         <Image
           src={'/src/assets/search.png'}
