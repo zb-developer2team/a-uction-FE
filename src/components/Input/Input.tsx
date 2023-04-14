@@ -68,7 +68,7 @@ export default function Input({
           src={`${image[imageType]}`}
           alt={`${image[imageType]} 이미지입니다.`}
           className={twMerge(
-            'w-[30px] h-[30px] bg-transparent absolute top-1/2 left-[5px] -translate-y-1/2'
+            'w-[30px] h-[30px] bg-transparent absolute top-[5px] left-[5px]'
           )}
         />
       )}
