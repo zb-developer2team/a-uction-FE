@@ -29,11 +29,11 @@ export default function Login({ className, ...props }: LoginProps) {
         <Image
           src={'/src/assets/auction.png'}
           alt={'A+uction 로고입니다.'}
-          className={twMerge('w-[120px] h-[120px] bg-transparent mx-auto')}
+          className={twMerge('w-[120px] h-[120px] bg-transparent mx-auto mh-0')}
         />
         <h1
           className={twMerge(
-            'w-full text-4xl font-bold mt-[10px] mb-[30px] text-center'
+            'w-full text-4xl font-bold mt-[10px] mb-[30px] text-center ml-0'
           )}
         >
           로그인
@@ -41,13 +41,19 @@ export default function Login({ className, ...props }: LoginProps) {
         <form className="flex-col justify-center border-b-2 border-LightGray">
           <div>
             <label className={twMerge('sr-only')}>이메일</label>
-            <Input type={'text'} placeholder={'email'} className="mb-10" />
+            <Input
+              type={'text'}
+              placeholder={'email'}
+              imageType={'email'}
+              className="mb-10"
+            />
           </div>
           <div>
             <label className={twMerge('sr-only')}>비밀번호</label>
             <Input
               type={'text'}
               placeholder={'password'}
+              imageType={'password'}
               maxLength={12}
               minLength={6}
               className="mb-[50px]"
