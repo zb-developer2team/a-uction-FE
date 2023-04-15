@@ -17,9 +17,9 @@ export default function ProductDetailPage({ className }: ProductDetailProps) {
   };
 
   return (
-    <div className={twMerge(`h-screen`)}>
+    <div className={twMerge(`w-screen`)}>
       <Header type={'member'} />
-      <div className={twMerge(`flex justify-center mt-20`)}>
+      <div>
         <ProductDetail
           category={'미술품'}
           status={'새상품'}
@@ -28,19 +28,22 @@ export default function ProductDetailPage({ className }: ProductDetailProps) {
           auctionPeriod={'2023.11.13 ~ 2023.11.15'}
           price={'64,000원'}
           startPrice={'68,000원'}
-          className={twMerge(`flex justify-center`)}
+          type={'member'}
+          className={twMerge('mt-20')}
         />
-      </div>
-      <div
-        className={twMerge(`w-full h-[300px] flex justify-center ml-56 mt-10`)}
-      >
-        <Button
-          type={'active'}
-          size={'xlarge'}
-          label={'경매 참여하기'}
-          onClick={clickHandler}
-          className="w-[480px] bg-Bluegreen hover:bg-White hover:text-Bluegreen hover:border-2 hover:border-Bluegreen text-2xl"
-        />
+        <div className={twMerge(`w-[856px] my-0 mx-auto text-right`)}>
+          <Button
+            type={'active'}
+            size={'xlarge'}
+            label={'경매 참여하기'}
+            onClick={() => {
+              clickHandler();
+            }}
+            className={twMerge(
+              'w-[420px] bg-Bluegreen hover:bg-White hover:text-Bluegreen hover:border-2 hover:border-Bluegreen text-2xl'
+            )}
+          />
+        </div>
       </div>
     </div>
   );
