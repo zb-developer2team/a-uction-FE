@@ -9,6 +9,8 @@ export interface ProductDetailProps {
   auctionPeriod: string; //추후에 어떤 식으로 데이터를 받아올지 몰라서 string으로 우선 넣었습니다.
   price: string;
   startPrice: string;
+  type: 'mine' | 'member';
+  id?: string;
   children?: string;
   className?: string;
 }
@@ -21,13 +23,18 @@ export default function ProductDetail({
   auctionPeriod,
   price,
   startPrice,
+  type,
+  id,
   children,
   className,
 }: ProductDetailProps) {
   return (
     <>
       <div
-        className={twMerge(`w-[1046px] flex font-line-seed-sans-kr`, className)}
+        className={twMerge(
+          `flex justify-center font-line-seed-sans-kr`,
+          className
+        )}
       >
         <div>
           <Image
@@ -37,14 +44,10 @@ export default function ProductDetail({
           />
         </div>
         <div className={twMerge(`w-[420px] ml-10`)}>
-          <h2
-            className={twMerge(
-              `border-b-[1px] h-[60px] mt-2 text-xl font-bold`
-            )}
-          >
+          <h2 className={twMerge(`border-b-[1px] pb-5 text-xl font-bold`)}>
             A+uction 제품
           </h2>
-          <div className={twMerge(`border-b-[1px] h-[118px] mt-8`)}>
+          <div className={twMerge(`border-b-[1px] py-5`)}>
             <p className="text-l mb-2">
               <span className="mr-6 font-bold">상품 카테고리</span>
               {category}
@@ -58,7 +61,7 @@ export default function ProductDetail({
               {description}
             </p>
           </div>
-          <div className={twMerge(`border-b-[1px] h-[80px] mt-8`)}>
+          <div className={twMerge(`border-b-[1px] py-5`)}>
             <p className="text-l mb-2 flex justify-between">
               <span className="mr-6 font-bold">남은시간</span>
               <span className="text-Red font-bold">{remainTime}</span>
@@ -68,7 +71,7 @@ export default function ProductDetail({
               <span>{auctionPeriod}</span>
             </p>
           </div>
-          <div className={twMerge(`h-[70px] mt-8`)}>
+          <div className={twMerge(`py-5`)}>
             <p className="text-l mb-2 flex justify-between">
               <span className="mr-6 font-bold">현재가</span>
               <span className="text-Red font-bold">{price}</span>
@@ -77,6 +80,14 @@ export default function ProductDetail({
               <span className="mr-6 font-bold">시작가</span>
               <span>{startPrice}</span>
             </p>
+            {type === 'mine' ? (
+              <p className="text-l mb-2 flex justify-between">
+                <span className="mr-6 font-bold">현재 입찰자</span>
+                <span className="text-Bluegreen font-bold">{id}</span>
+              </p>
+            ) : (
+              ''
+            )}
           </div>
           {children}
         </div>

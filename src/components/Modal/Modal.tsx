@@ -22,10 +22,14 @@ export default function Modal({ size, className, ...props }: ModalProps) {
   return (
     <>
       {isOpen && (
-        <div className={twMerge('flex justify-center items-center h-screen')}>
+        <div
+          className={twMerge(
+            'flex justify-center items-center w-screen h-screen fixed top-0 left-0'
+          )}
+        >
           <div
             className={twMerge(
-              `${modalSize[size]} bg-White opacity-100 rounded-2xl shadow-[0_4px_4px_rgba(0,0,0,0.5)]`,
+              `${modalSize[size]} bg-White opacity-100 rounded-2xl shadow-[0_4px_4px_rgba(0,0,0,0.5)] z-30`,
               className,
               'flex flex-col justify-center items-center'
             )}
@@ -43,7 +47,7 @@ export default function Modal({ size, className, ...props }: ModalProps) {
               onClick={handleButtonClick}
             />
           </div>
-          <div className="absolute top-0 left-0 h-full w-full bg-DarkGray opacity-80 -z-50"></div>
+          <div className="absolute top-0 left-0 h-full w-full bg-DarkGray opacity-80"></div>
         </div>
       )}
     </>
