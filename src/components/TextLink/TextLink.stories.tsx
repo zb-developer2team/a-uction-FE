@@ -1,5 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import Link from './Link';
+import Link from './TextLink';
 
 const meta = {
   component: Link,

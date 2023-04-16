@@ -3,7 +3,8 @@ import { useState } from 'react';
 import Image from '../../components/Image/Image';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-import Link from '../../components/Link/Link';
+import TextLink from '../../components/TextLink/TextLink';
+import { Link } from 'react-router-dom';
 
 export interface LoginProps {
   className?: string;
@@ -26,11 +27,16 @@ export default function Login({ className, ...props }: LoginProps) {
       {...props}
     >
       <div>
-        <Image
-          src={'/src/assets/auction.png'}
-          alt={'A+uction 로고입니다.'}
-          className={twMerge('w-[120px] h-[120px] bg-transparent mx-auto mh-0')}
-        />
+        <Link to="/">
+          <Image
+            src={'/src/assets/auction.png'}
+            alt={'A+uction 로고입니다.'}
+            className={twMerge(
+              'w-[120px] h-[120px] bg-transparent mx-auto mh-0'
+            )}
+          />
+        </Link>
+
         <h1
           className={twMerge(
             'w-full text-4xl font-bold mt-[10px] mb-[30px] text-center ml-0'
@@ -59,15 +65,18 @@ export default function Login({ className, ...props }: LoginProps) {
               className="mb-[50px]"
             />
           </div>
-          <Button
-            type={'active'}
-            label={'로그인'}
-            size={'medium'}
-            onClick={clickHandler}
-            className={twMerge('mx-auto my-0')}
-          />
-          <Link
-            url={'https://www.naver.com'} //페이지 연결 전 임의로 주소 설정하였습니다.
+          <Link to="/">
+            <Button
+              type={'active'}
+              label={'로그인'}
+              size={'medium'}
+              onClick={clickHandler}
+              className={twMerge('mx-auto my-0')}
+            />
+          </Link>
+
+          <TextLink
+            url={'/'} //페이지 연결 전 임의로 주소 설정하였습니다.
             type={'signUp'}
             className={twMerge('text-center mt-5 mb-10 mx-auto')}
           />

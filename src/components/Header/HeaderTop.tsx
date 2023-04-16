@@ -4,6 +4,7 @@ import Image from '../Image/Image';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ImageButton from '../ImageButton/ImageButton';
+import { Link } from 'react-router-dom';
 
 export interface HeaderTopProps {
   type: 'guest' | 'member';
@@ -29,19 +30,19 @@ export default function HeaderTop({
       )}
       {...props}
     >
-      <div className={twMerge(`h-[70px] flex items-center gap-5`)}>
+      <Link to="/" className={twMerge(`h-[70px] flex items-center gap-5`)}>
         <Image
           className={twMerge('w-10 h-10 bg-transparent')}
           src={'/src/assets/auction.png'}
           alt={'A+ction logo 입니다.'}
         />
         <span className={twMerge(`text-2xl font-bold`)}>A+uction</span>
-      </div>
+      </Link>
       <div className={twMerge(`flex items-center gap-5 relative`)}>
         <Input
           type={'search'}
           placeholder={'searchProduct'}
-          className="border-2 rounded-lg bg-left-top pl-[60px]"
+          className="border-2 rounded-lg bg-left-top pl-[60px] pr-[10px]"
           imageType={'none'}
         />
         <Image
@@ -52,14 +53,18 @@ export default function HeaderTop({
           )}
         />
         {type === 'guest' ? (
-          <Button
-            type={'active'}
-            size={'small'}
-            label={'로그인'}
-            onClick={clickHandler}
-          />
+          <Link to="/login">
+            <Button
+              type={'active'}
+              size={'small'}
+              label={'로그인'}
+              onClick={clickHandler}
+            />
+          </Link>
         ) : (
-          <ImageButton type={'image'} src={'/src/assets/SampleImage.png'} />
+          <Link to="mypage">
+            <ImageButton type={'image'} src={'/src/assets/SampleImage.png'} />
+          </Link>
         )}
       </div>
     </div>
