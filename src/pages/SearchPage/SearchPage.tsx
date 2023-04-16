@@ -4,7 +4,7 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import Product from '../../components/Product/Product';
 
 export interface SearchPageProps {
-  count: string;
+  count?: string;
   className?: string;
 }
 

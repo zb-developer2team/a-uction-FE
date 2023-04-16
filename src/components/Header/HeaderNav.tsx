@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 export interface HeaderNavProps {
@@ -31,9 +32,13 @@ export default function HeaderNav({
       )}
       {...props}
     >
-      {navigation[type].map((nav) => (
-        <li>{nav}</li>
-      ))}
+      <NavLink to="/">홈</NavLink>
+      <NavLink to="/progression">진행 중인 경매</NavLink>
+      <NavLink to="/upcoming">예정 경매</NavLink>
+      <NavLink to="/result">경매 결과</NavLink>
+      <NavLink to="/inform">경매 안내</NavLink>
+      {type === 'member' ? <NavLink to="/mypage">마이페이지</NavLink> : ''}
+      {type === 'member' ? <NavLink to="/regist">물품 등록</NavLink> : ''}
     </ul>
   );
 }

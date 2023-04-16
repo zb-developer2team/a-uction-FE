@@ -3,7 +3,8 @@ import { useState } from 'react';
 import Image from '../../components/Image/Image';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-import Link from '../../components/Link/Link';
+import TextLink from '../../components/TextLink/TextLink';
+import { Link } from 'react-router-dom';
 
 export interface LoginProps {
   className?: string;
@@ -25,13 +26,15 @@ export default function SignUp({ className, ...props }: LoginProps) {
       )}
       {...props}
     >
-      <Image
-        src={'/src/assets/auction.png'}
-        alt={'A+uction 로고입니다.'}
-        className={twMerge(
-          'w-20 h-20 bg-transparent mx-auto absolute top-5 left-5'
-        )}
-      />
+      <Link to="/">
+        <Image
+          src={'/src/assets/auction.png'}
+          alt={'A+uction 로고입니다.'}
+          className={twMerge(
+            'w-20 h-20 bg-transparent mx-auto absolute top-5 left-5'
+          )}
+        />
+      </Link>
       <div>
         <h1
           className={twMerge(
@@ -111,8 +114,8 @@ export default function SignUp({ className, ...props }: LoginProps) {
             onClick={clickHandler}
             className={twMerge('mx-auto my-0')}
           />
-          <Link
-            url={'https://www.naver.com'} //페이지 연결 전 임의로 주소 설정하였습니다.
+          <TextLink
+            url={'/'} //페이지 연결 전 임의로 주소 설정하였습니다.
             type={'logIn'}
             className={twMerge('text-center mt-5 mb-10 mx-auto')}
           />
