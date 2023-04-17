@@ -12,7 +12,8 @@ export interface InputProps {
     | 'searchProduct'
     | 'productName'
     | 'startPrice'
-    | 'bidding';
+    | 'bidding'
+    | 'info';
   imageType: 'email' | 'password' | 'name' | 'number' | 'none';
   maxLength?: number;
   minLength?: number;
@@ -41,6 +42,7 @@ export default function Input({
     productName: '물품 이름을 입력해주세요',
     startPrice: '시작가를 입력해주세요',
     bidding: '최소 응찰가격을 입력해주세요.',
+    info: '상품에 대해 간단하게 설명해주세요.',
   };
 
   const image = {

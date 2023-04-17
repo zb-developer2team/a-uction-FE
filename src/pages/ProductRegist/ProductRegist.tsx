@@ -89,7 +89,7 @@ export default function Regist({ className }: ProductRegistProps) {
           <span className="text-xl font-bold mt-1 mr-10">설명</span>
           <Input
             type={'search'}
-            placeholder={'searchProduct'}
+            placeholder={'info'}
             imageType={'none'}
             className="border-2 rounded-lg"
           />

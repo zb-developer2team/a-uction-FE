@@ -66,6 +66,17 @@ SearchProduct.args = {
   imageType: 'none',
 };
 
+const ProductInfo: StoryFn<typeof Input> = (args) => (
+  <Input className="border-2 rounded-lg pl-[10px]" {...args} />
+);
+
+export const Info = ProductInfo.bind({});
+Info.args = {
+  type: 'search',
+  placeholder: 'searchProduct',
+  imageType: 'none',
+};
+
 export const ProductName: StoryFn<typeof Input> = (args) => (
   <Input className="border-2 rounded-lg pl-[10px]" {...args} />
 );
