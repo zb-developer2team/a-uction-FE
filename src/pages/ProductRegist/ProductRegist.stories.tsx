@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import ProductRegist from './ProductRegist';
+import ProductRegist, { ProductRegistProps } from './ProductRegist';
 
-const meta = {
+const meta: Meta<ProductRegistProps> = {
   component: ProductRegist,
   title: 'pages/ProductRegist',
   parameters: {
@@ -10,12 +10,14 @@ const meta = {
       url: 'figmaURL',
     },
   },
-} as Meta<typeof ProductRegist>;
+};
 
 export default meta;
 
-const Template: StoryFn<typeof ProductRegist> = (args) => (
-  <ProductRegist {...args} />
+const Template: StoryFn<ProductRegistProps> = (args) => (
+  <div>
+    <ProductRegist {...args} />
+  </div>
 );
 
 export const Regist = Template.bind({});
