@@ -20,17 +20,7 @@ export default function ProductDetailPage({ className }: ProductDetailProps) {
     <div className={twMerge(`w-screen`)}>
       <Header type={'member'} />
       <div>
-        <ProductDetail
-          category={'미술품'}
-          status={'새상품'}
-          description={'눈물 머금은 새상품 내놓기'}
-          remainTime={'2일 3시간 11분'}
-          auctionPeriod={'2023.11.13 ~ 2023.11.15'}
-          price={'64,000원'}
-          startPrice={'68,000원'}
-          type={'member'}
-          className={twMerge('mt-20')}
-        />
+        <ProductDetail />
         <div className={twMerge(`w-[856px] my-0 mx-auto text-right`)}>
           <Button
             type={'active'}
