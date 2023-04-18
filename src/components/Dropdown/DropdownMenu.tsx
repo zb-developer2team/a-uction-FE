@@ -1,16 +1,18 @@
 import { twMerge } from 'tailwind-merge';
 import DropdownItem from './DropdownItem';
 
-export interface DropdownProps {
+export interface DropdownMenuProps {
   type: 'product' | 'sort';
   className?: string;
+  onDropdownClick?: (item: string) => void;
 }
 
 export default function DropdownMenu({
   type,
   className,
+  onDropdownClick,
   ...props
-}: DropdownProps) {
+}: DropdownMenuProps) {
   const category = {
     product: ['가구', '가전/디지털', '미술품'],
     sort: ['시작가 높은 순', '시작가 낮은 순', '마감순', '등록일 순'],
@@ -26,6 +28,11 @@ export default function DropdownMenu({
     sort: 'h-9 leading-[36px]',
   };
 
+  const dropdownClick = (item: string) => {
+    if (onDropdownClick) {
+      onDropdownClick(item);
+    }
+  };
   return (
     <ul
       className={twMerge(
@@ -35,7 +42,11 @@ export default function DropdownMenu({
       {...props}
     >
       {category[type].map((item) => (
-        <DropdownItem className={twMerge(`${height[type]}`)}>
+        <DropdownItem
+          key={item}
+          className={twMerge(`${height[type]}`)}
+          onDropdownClick={() => dropdownClick(item)}
+        >
           {item}
         </DropdownItem>
       ))}

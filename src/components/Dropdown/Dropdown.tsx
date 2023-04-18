@@ -1,14 +1,15 @@
 import { twMerge } from 'tailwind-merge';
-import DropdownMenu from './DropdownMenu';
-import { useEffect, useState } from 'react';
+import DropdownMenu, { DropdownMenuProps } from './DropdownMenu';
+import { useState } from 'react';
 
-export interface ImageProps {
+export interface DropdownProps extends DropdownMenuProps {
   type: 'product' | 'sort';
   className?: string;
 }
 
-export default function Dropdown({ type, className, ...props }: ImageProps) {
+export default function Dropdown({ type, className, ...props }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const category = {
     product: '카테고리',
@@ -20,6 +21,14 @@ export default function Dropdown({ type, className, ...props }: ImageProps) {
     sort: 'w-[105px] h-9 text-sm',
   };
 
+  const dropdownClick = (item: string) => {
+    setSelectedCategory(item);
+    setIsOpen(false);
+    if (props.onDropdownClick) {
+      props.onDropdownClick(item);
+    }
+  };
+
   return (
     <div className={twMerge(`font-line-seed-sans-kr`, className)}>
       <button
@@ -29,9 +38,9 @@ export default function Dropdown({ type, className, ...props }: ImageProps) {
         )}
         onClick={() => setIsOpen((isOpen) => !isOpen)}
       >
-        {category[type]}
+        {selectedCategory || category[type]}
       </button>
-      {isOpen && <DropdownMenu type={type} />}
+      {isOpen && <DropdownMenu type={type} onDropdownClick={dropdownClick} />}
     </div>
   );
 }
