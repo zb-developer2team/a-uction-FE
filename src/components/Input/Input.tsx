@@ -1,5 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import Image from '../Image/Image';
+import { useState } from 'react';
 
 export interface InputProps {
   type: 'text' | 'search';
@@ -17,6 +18,7 @@ export interface InputProps {
   imageType: 'email' | 'password' | 'name' | 'number' | 'none';
   maxLength?: number;
   minLength?: number;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 }
 
@@ -24,6 +26,7 @@ export default function Input({
   type,
   placeholder,
   imageType,
+  onChange,
   className,
   ...props
 }: InputProps) {
@@ -32,6 +35,7 @@ export default function Input({
     search: 'search',
   };
 
+  const [input, setInput] = useState('');
   const form = {
     email: '이메일을 입력해주세요',
     password: '비밀번호를 입력해주세요',
@@ -53,6 +57,11 @@ export default function Input({
     none: '',
   };
 
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+    onChange && onChange(e);
+  };
+
   return (
     <div className="relative">
       <input
@@ -62,6 +71,7 @@ export default function Input({
           'w-[360px] h-[50px] text-base border-b-2 border-Gray pl-[50px] focus:border-Orange outline-none font-line-seed-sans-kr',
           className
         )}
+        onChange={inputHandler}
       />
       {`${image[imageType]}` === '' ? (
         ''
