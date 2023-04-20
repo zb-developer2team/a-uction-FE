@@ -1,11 +1,21 @@
 import { twMerge } from 'tailwind-merge';
+import { useState } from 'react';
 import Input from '../../components/Input/Input';
 
 export interface ProductNameProps {
   className?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Name({ className }: ProductNameProps) {
+export default function Name({
+  className,
+  onChange,
+  ...props
+}: ProductNameProps) {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('Input 값이 변경되었습니다:', event.target.value);
+    onChange && onChange(event);
+  };
   return (
     <>
       <div className={twMerge(`flex h-[74px] border-b-[1px] mt-6`)}>
@@ -15,6 +25,7 @@ export default function Name({ className }: ProductNameProps) {
           placeholder={'productName'}
           imageType={'none'}
           className="ml-10"
+          onChange={handleInputChange}
         />
       </div>
     </>
