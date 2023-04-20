@@ -3,7 +3,7 @@ import ProductCategory from './ProductCategory';
 
 const meta = {
   component: ProductCategory,
-  title: 'components/ProductName',
+  title: 'components/ProductCategory',
   parameters: {
     design: {
       type: 'figma',
