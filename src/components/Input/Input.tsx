@@ -3,7 +3,7 @@ import Image from '../Image/Image';
 import { useState } from 'react';
 
 export interface InputProps {
-  type: 'text' | 'search';
+  type: 'text' | 'search' | 'password';
   placeholder:
     | 'email'
     | 'password'
@@ -33,6 +33,7 @@ export default function Input({
   const inputType = {
     text: 'text',
     search: 'search',
+    password: 'password',
   };
 
   const [input, setInput] = useState('');

@@ -84,7 +84,7 @@ export default function LoginForm({ className, ...props }: LoginFormProps) {
       <div className="relative">
         <label className={twMerge('sr-only')}>비밀번호</label>
         <Input
-          type={'text'}
+          type={'password'}
           placeholder={'password'}
           imageType={'password'}
           maxLength={12}
