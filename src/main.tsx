@@ -12,6 +12,10 @@ import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage';
 import MyBiddingPage from './pages/MyBidding/MyBidding';
 import DepositPage from './pages/DepositPage/DepositPage';
 import Preparing from './pages/Preparing/Preparing';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+export var token =
+  'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJtYXN0ZXIiLCJzdWIiOiJBY2Nlc3NUb2tlbiIsImlhdCI6MTY4MTg4MTE2NCwiZXhwIjoxNjgzMDkwNzY0fQ.WTVSTVsxVi8NNlhiENVJgqNNqSO96LA9TDrAe8Bymys';
 
 const router = createBrowserRouter([
   {
@@ -72,8 +76,12 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </QueryClientProvider>
 );
