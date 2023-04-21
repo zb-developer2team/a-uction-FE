@@ -155,7 +155,7 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
       <div className="relative">
         <label className={twMerge('sr-only')}>비밀번호</label>
         <Input
-          type={'text'}
+          type={'password'}
           placeholder={'password'}
           imageType={'password'}
           maxLength={12}
@@ -170,7 +170,7 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
       <div className="relative">
         <label className={twMerge('sr-only')}>비밀번호 확인</label>
         <Input
-          type={'text'}
+          type={'password'}
           placeholder={'passwordCheck'}
           imageType={'password'}
           maxLength={12}
