@@ -1,4 +1,5 @@
 import { twMerge } from 'tailwind-merge';
+import { useState, useEffect } from 'react';
 import DropdownItem from './DropdownItem';
 
 export interface DropdownMenuProps {
@@ -33,6 +34,11 @@ export default function DropdownMenu({
       onDropdownClick(item);
     }
   };
+
+  // useEffect(() => {
+  //   console.log('keyPrefix changed: ', keyPrefix);
+  // }, [keyPrefix]);
+
   return (
     <ul
       className={twMerge(
@@ -40,8 +46,9 @@ export default function DropdownMenu({
         className
       )}
       {...props}
+      // key={`DropdownMenu-${keyPrefix}`}
     >
-      {category[type].map((item) => (
+      {category[type].map((item, index) => (
         <DropdownItem
           key={item}
           className={twMerge(`${height[type]}`)}
