@@ -8,6 +8,7 @@ export interface PostProductInfo {
   category: string;
   startDateTime: string;
   endDateTime: string;
+  description: string;
 }
 const getProductInfo = async (
   token: string,
