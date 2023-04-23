@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './tailwind.css';
 import MainPage from './pages/MainPage/MainPage';
 import Login from './pages/Login/Login';
@@ -17,71 +17,29 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 export var token =
   'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJtYXN0ZXIiLCJzdWIiOiJBY2Nlc3NUb2tlbiIsImlhdCI6MTY4MTg4MTE2NCwiZXhwIjoxNjgzMDkwNzY0fQ.WTVSTVsxVi8NNlhiENVJgqNNqSO96LA9TDrAe8Bymys';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <MainPage />,
-  },
-  {
-    path: 'login',
-    element: <Login />,
-  },
-  {
-    path: 'signup',
-    element: <SignUp />,
-  },
-  {
-    path: 'search',
-    element: <SearchPage />,
-  },
-  {
-    path: 'mypage',
-    element: <MyPage />,
-  },
-  {
-    path: 'regist',
-    element: <Regist />,
-  },
-  {
-    path: 'detail',
-    element: <ProductDetailPage />,
-  },
-  {
-    path: 'mybidding',
-    element: <MyBiddingPage />,
-  },
-  {
-    path: 'deposit',
-    element: <DepositPage />,
-  },
-  {
-    path: 'progression',
-    element: <SearchPage />,
-  },
-  {
-    path: 'upcoming',
-    element: <Preparing />,
-  },
-  {
-    path: 'result',
-    element: <SearchPage />,
-  },
-  {
-    path: 'preparing',
-    element: <Preparing />,
-  },
-  {
-    path: 'inform',
-    element: <MainPage />,
-  },
-]);
-
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/regist" element={<Regist />} />
+          <Route path="/detail" element={<ProductDetailPage />} />
+          <Route path="/mybidding" element={<MyBiddingPage />} />
+          <Route path="/deposit" element={<DepositPage />} />
+          <Route path="/progression" element={<SearchPage />} />
+          <Route path="/upcoming" element={<Preparing />} />
+          <Route path="/result" element={<SearchPage />} />
+          <Route path="/preparing" element={<Preparing />} />
+          <Route path="/inform" element={<MainPage />} />
+        </Routes>
+      </BrowserRouter>
     </React.StrictMode>
   </QueryClientProvider>
 );
