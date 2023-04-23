@@ -1,19 +1,41 @@
 import { twMerge } from 'tailwind-merge';
-import DateTimePicker from '../../components/DateTimePicker/DateTimePicker';
+import { Dayjs } from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { useState } from 'react';
 
 export interface StartDateTimeProps {
   className?: string;
+  onChange?: (date: string) => void;
 }
 
-export default function StartDateTime({ className }: StartDateTimeProps) {
+export default function StartDateTime({
+  onChange,
+  className,
+}: StartDateTimeProps) {
+  const [selectedDate, setSelectedDate] = useState('');
+
+  const handleChange = (Date: Dayjs | null) => {
+    if (Date !== null) {
+      const dateToSendToAPI = Date.toISOString();
+      setSelectedDate(dateToSendToAPI);
+      if (onChange) {
+        onChange(dateToSendToAPI);
+      }
+    } else {
+      setSelectedDate('');
+    }
+  };
+
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className={twMerge(`flex h-[74px] border-b-[1px] mt-6`)}>
         <span className="text-xl font-bold mt-1 mr-10">경매시작시간</span>
         <div className="-mt-3">
-          <DateTimePicker />
+          <DateTimePicker onChange={handleChange} />
         </div>
       </div>
-    </>
+    </LocalizationProvider>
   );
 }
