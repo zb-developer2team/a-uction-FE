@@ -40,6 +40,7 @@ export default function Button({
 
   return (
     <button
+      type={'button'}
       className={twMerge(`${buttonSize[size]} ${style[type]}`, className)}
       onClick={handleClick}
       {...props}
