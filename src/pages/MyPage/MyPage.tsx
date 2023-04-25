@@ -10,7 +10,7 @@ export interface MyPage {
 }
 
 export default function MyPage({ className }: MyPage) {
-  const [selectedTab, setSelectedTab] = useState('내가 찜한');
+  const [selectedTab, setSelectedTab] = useState('내가 참여한');
 
   const products = [
     { category: '미술품', startPrice: '50,000', price: '60,000' },
@@ -45,15 +45,6 @@ export default function MyPage({ className }: MyPage) {
         <ul className="flex">
           <li
             className={`cursor-pointer ${
-              selectedTab === '내가 찜한' ? 'text-Red' : ''
-            }`}
-            onClick={() => setSelectedTab('내가 찜한')}
-          >
-            내가 찜한
-          </li>
-          <span className="ml-6 mr-6">|</span>
-          <li
-            className={`cursor-pointer ${
               selectedTab === '내가 참여한' ? 'text-Red' : ''
             }`}
             onClick={() => setSelectedTab('내가 참여한')}
@@ -68,6 +59,15 @@ export default function MyPage({ className }: MyPage) {
             onClick={() => setSelectedTab('내가 등록한')}
           >
             내가 등록한
+          </li>
+          <span className="ml-6 mr-6">|</span>
+          <li
+            className={`cursor-pointer ${
+              selectedTab === '내가 구매한' ? 'text-Red' : ''
+            }`}
+            onClick={() => setSelectedTab('내가 구매한')}
+          >
+            내가 구매한
           </li>
         </ul>
       </div>
