@@ -11,22 +11,22 @@ export default function MinBeedingPrice({
   className,
   onChange,
 }: MinBeedingPriceProps) {
-  const [number, setNumber] = useState('');
-  const [numberMsg, setNumberMsg] = useState('');
+  const [price, setPrice] = useState('');
+  const [priceMsg, setPriceMsg] = useState('');
 
-  const validateNumber = (number: string) => {
+  const validatePrice = (number: string) => {
     return number.match(/^[0-9]*$/);
   };
 
-  const onChangeNumber = useCallback(
+  const onChangePrice = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const currentNumber = e.target.value;
-      setNumber(currentNumber);
+      setPrice(currentNumber);
 
-      if (!validateNumber(currentNumber)) {
-        setNumberMsg('숫자만 입력해주세요.');
+      if (!validatePrice(currentNumber)) {
+        setPriceMsg('숫자만 입력해주세요.');
       } else {
-        setNumberMsg('');
+        setPriceMsg('');
         if (typeof onChange === 'function') {
           onChange(Number(currentNumber));
         }
@@ -43,10 +43,10 @@ export default function MinBeedingPrice({
           placeholder={'bidding'}
           imageType={'none'}
           className="border-2 rounded-lg"
-          onChange={onChangeNumber}
+          onChange={onChangePrice}
         />
         <span className="text-xl mt-1 ml-4">원</span>
-        <span className="mt-3 pl-8 text-Red">{numberMsg}</span>
+        <span className="mt-3 pl-8 text-Red">{priceMsg}</span>
       </div>
     </>
   );
