@@ -25,7 +25,7 @@ export default function Product({
       >
         <Image
           size={'sm'}
-          src={'/src/assets/SampleImage.png'}
+          src={`${import.meta.env.VITE_IMAGE_PATH}/SampleImage.png`}
           alt={'상품 이미지 입니다.'}
         />
         <div className="ml-2">

@@ -28,7 +28,7 @@ export default function MyPage({ className }: MyPage) {
       <div className="flex justify-center mt-16">
         <Image
           size={'sm'}
-          src={'/src/assets/SampleImage.png'}
+          src={`${import.meta.env.VITE_IMAGE_PATH}/SampleImage.png`}
           alt={'프로필 사진 입니다.'}
         />
         <Profile

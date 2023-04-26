@@ -51,10 +51,10 @@ export default function Input({
   };
 
   const image = {
-    email: '/src/assets/mail.png',
-    password: '/src/assets/lock.png',
-    name: '/src/assets/name.png',
-    number: '/src/assets/smartphone-call.png',
+    email: `${import.meta.env.VITE_IMAGE_PATH}/mail.png`,
+    password: `${import.meta.env.VITE_IMAGE_PATH}/lock.png`,
+    name: `${import.meta.env.VITE_IMAGE_PATH}/name.png`,
+    number: `${import.meta.env.VITE_IMAGE_PATH}/smartphone-call.png`,
     none: '',
   };
 

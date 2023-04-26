@@ -11,7 +11,7 @@ export default function LoginTitle({ className, ...props }: LoginTitleProps) {
     <>
       <Link to="/">
         <Image
-          src={'/src/assets/auction.png'}
+          src={`${import.meta.env.VITE_IMAGE_PATH}/auction.png`}
           alt={'A+uction 로고입니다.'}
           className={twMerge('w-[120px] h-[120px] bg-transparent mx-auto mh-0')}
         />
