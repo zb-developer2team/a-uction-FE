@@ -30,7 +30,7 @@ export default function Regist({
 }: ProductRegistProps): JSX.Element {
   const [buttonActive, setButtonActive] = useState(true);
   const [productName, setProductName] = useState('');
-  const [productPrice, setProductPrice] = useState(0);
+  const [productPrice, setProductPrice] = useState<number | null>(null);
   const [minBidPrice, setMinBidPrice] = useState(0);
   const [category, setCategory] = useState('');
   const [productInfo, setProductInfo] = useState('');
@@ -58,7 +58,7 @@ export default function Regist({
     }
 
     const formData = new FormData();
-    formData.append('file', file ?? ''); // file은 파일 객체입니다.
+    formData.append('file', file ?? '');
     formData.append('itemName', productName);
     formData.append('itemStatus', status);
     formData.append('startingPrice', String(productPrice));
@@ -72,7 +72,9 @@ export default function Regist({
       .post('http://3.35.38.11:8081/auctions', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: token, // 토큰 값이 필요한 경우에는 해당 코드를 추가하여 헤더에 인증 정보를 전송
+          Authorization: `Bearer ${token}`, // 토큰 값이 필요한 경우에는 해당 코드를 추가하여 헤더에 인증 정보를 전송
+          credential: true,
+          mode: 'cors',
         },
       })
       .then((response) => {
@@ -106,10 +108,10 @@ export default function Regist({
         <ProductCategory onChange={(item) => setCategory(item)} />
         <ProductStatus onChange={(value) => setStatus(value)} value={status} />
         <ProductStartPrice
-          onChange={(event) => setProductPrice(parseInt(event.target.value))}
+          onChange={(currentNumber) => setProductPrice(currentNumber)}
         />
         <MinBeedingPrice
-          onChange={(event) => setMinBidPrice(parseInt(event.target.value))}
+          onChange={(currentNumber) => setMinBidPrice(currentNumber)}
         />
         <ProductInfo onChange={(event) => setProductInfo(event.target.value)} />
         <StartDateTime onChange={(date) => setStartDateTime(date)} />

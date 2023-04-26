@@ -1,20 +1,39 @@
 import { twMerge } from 'tailwind-merge';
+import { useState, useCallback } from 'react';
 import Input from '../../components/Input/Input';
 
 export interface MinBeedingPriceProps {
   className?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (currentNumber: number) => void;
 }
 
 export default function MinBeedingPrice({
   className,
   onChange,
 }: MinBeedingPriceProps) {
-  const handleBiddingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const price = Number(event.target.value);
-    console.log('Input 값이 변경되었습니다:', event.target.value);
-    onChange && onChange(event);
+  const [price, setPrice] = useState('');
+  const [priceMsg, setPriceMsg] = useState('');
+
+  const validatePrice = (number: string) => {
+    return number.match(/^[0-9]*$/);
   };
+
+  const onChangePrice = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const currentNumber = e.target.value;
+      setPrice(currentNumber);
+
+      if (!validatePrice(currentNumber)) {
+        setPriceMsg('숫자만 입력해주세요.');
+      } else {
+        setPriceMsg('');
+        if (typeof onChange === 'function') {
+          onChange(Number(currentNumber));
+        }
+      }
+    },
+    []
+  );
   return (
     <>
       <div className={twMerge(`flex h-[74px] border-b-[1px] mt-6`)}>
@@ -24,9 +43,10 @@ export default function MinBeedingPrice({
           placeholder={'bidding'}
           imageType={'none'}
           className="border-2 rounded-lg"
-          onChange={handleBiddingChange}
+          onChange={onChangePrice}
         />
         <span className="text-xl mt-1 ml-4">원</span>
+        <span className="mt-3 pl-8 text-Red">{priceMsg}</span>
       </div>
     </>
   );
