@@ -9,7 +9,7 @@ export interface PostProductInfo {
   startDateTime: string;
   endDateTime: string;
   description: string;
-  files: File;
+  imageSrc: File;
 }
 
 const getProductInfo = async (
