@@ -26,7 +26,7 @@ const getProductInfo = async (
     formData.append('data', JSON.stringify(productInfo));
     const response = await axios({
       method: 'post',
-      url: `http://localhost:8000/api/auctions`,
+      url: `http://3.35.38.11:8081/auctions`,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',

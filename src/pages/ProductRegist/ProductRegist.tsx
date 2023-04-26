@@ -69,7 +69,7 @@ export default function Regist({
     formData.append('description', productInfo);
 
     axios
-      .post('http://3.35.38.11:8081/register/auctions', formData, {
+      .post('http://3.35.38.11:8081/auctions', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: token, // 토큰 값이 필요한 경우에는 해당 코드를 추가하여 헤더에 인증 정보를 전송
