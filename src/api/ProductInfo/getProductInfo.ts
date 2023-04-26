@@ -9,19 +9,29 @@ export interface PostProductInfo {
   startDateTime: string;
   endDateTime: string;
   description: string;
+  files: File;
 }
+
 const getProductInfo = async (
   token: string,
-  productInfo: PostProductInfo
+  productInfo: PostProductInfo,
+  files: File
 ): Promise<PostProductInfo> => {
   try {
+    const formData = new FormData();
+
+    formData.append('file', files);
+    formData.append('productInfo', JSON.stringify(productInfo));
+
+    formData.append('data', JSON.stringify(productInfo));
     const response = await axios({
       method: 'post',
       url: `http://localhost:8000/api/auctions`,
       headers: {
         Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
       },
-      data: { productInfo },
+      data: formData,
     });
     return response.data;
   } catch (error) {
@@ -29,4 +39,5 @@ const getProductInfo = async (
     throw new Error('실패');
   }
 };
+
 export default getProductInfo;
