@@ -4,7 +4,7 @@ import Input from '../../components/Input/Input';
 
 export interface ProductStartPriceProps {
   className?: string;
-  onChange?: (price: number) => void;
+  onChange?: (currentPrice: number) => void;
 }
 
 export default function ProductStartPrice({
@@ -21,19 +21,18 @@ export default function ProductStartPrice({
   const isPriceValid = validatePrice(String(price));
 
   const onChangePrice = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const currentPrice = Number(e.target.value);
-
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const currentPrice = Number(event.target.value);
       setPrice(currentPrice);
 
-      if (!validatePrice(e.target.value)) {
+      if (!validatePrice(String(currentPrice))) {
         setValidateMsg('숫자로 입력해 주세요.');
       } else {
         setValidateMsg('');
         onChange && onChange(currentPrice);
       }
 
-      console.log('Input 값이 변경되었습니다:', e.target.value);
+      console.log('Input 값이 변경되었습니다:', currentPrice);
     },
     []
   );
