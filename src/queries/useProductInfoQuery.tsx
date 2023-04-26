@@ -5,9 +5,10 @@ import getProductInfo, {
 
 export function useProductInfoQuery(
   token: string,
-  productInfo: PostProductInfo
+  productInfo: PostProductInfo,
+  files: File
 ) {
   return useQuery<PostProductInfo, Error>(['productInfo', productInfo], () =>
-    getProductInfo(token, productInfo)
+    getProductInfo(token, productInfo, files)
   );
 }

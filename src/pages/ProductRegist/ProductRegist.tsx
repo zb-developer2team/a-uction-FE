@@ -37,30 +37,9 @@ export default function Regist({
   const [status, setStatus] = useState('');
   const [startDateTime, setStartDateTime] = useState<string>('');
   const [endDateTime, setEndDateTime] = useState<string>('');
+  const [file, setFile] = useState<File | null>(null);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const allInputsFilled =
-      productName !== '' &&
-      productPrice !== 0 &&
-      minBidPrice !== 0 &&
-      category !== '' &&
-      productInfo !== '' &&
-      status !== '' &&
-      startDateTime !== '' &&
-      endDateTime !== '';
-    setButtonActive(allInputsFilled);
-  }, [
-    productName,
-    productPrice,
-    minBidPrice,
-    category,
-    productInfo,
-    status,
-    startDateTime,
-    endDateTime,
-  ]);
 
   const clickHandler = async () => {
     const allInputsFilled =
@@ -71,21 +50,31 @@ export default function Regist({
       productInfo !== '' &&
       status !== '' &&
       startDateTime !== '' &&
-      endDateTime !== '';
+      endDateTime !== '' &&
+      file !== null;
     if (!allInputsFilled) {
       alert('모든 입력값을 입력해주세요.');
       return;
     }
-    getProductInfo(token, {
-      itemName: productName,
-      itemStatus: status,
-      startingPrice: productPrice,
-      minimumBid: minBidPrice,
-      category: category,
-      startDateTime: startDateTime,
-      endDateTime: endDateTime,
-      description: productInfo,
-    })
+
+    const formData = new FormData();
+    formData.append('file', file ?? ''); // file은 파일 객체입니다.
+    formData.append('itemName', productName);
+    formData.append('itemStatus', status);
+    formData.append('startingPrice', String(productPrice));
+    formData.append('minimumBid', String(minBidPrice));
+    formData.append('category', category);
+    formData.append('startDateTime', startDateTime);
+    formData.append('endDateTime', endDateTime);
+    formData.append('description', productInfo);
+
+    axios
+      .post('http://3.35.38.11:8081/auctions', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token, // 토큰 값이 필요한 경우에는 해당 코드를 추가하여 헤더에 인증 정보를 전송
+        },
+      })
       .then((response) => {
         console.log(response);
         // navigate('/mypage'); // TODO CHANGE: 정상적으로 api를 응답받았을 경우 여기서 navigate 사용
@@ -108,7 +97,11 @@ export default function Regist({
         상품 등록
       </div>
       <div className={twMerge(`w-screen h-screen ml-10`)}>
-        <ImageRegist />
+        <ImageRegist
+          onImageUploaded={(imageFilePath) =>
+            setFile(imageFilePath as unknown as File | null)
+          }
+        />
         <ProductName onChange={(event) => setProductName(event.target.value)} />
         <ProductCategory onChange={(item) => setCategory(item)} />
         <ProductStatus onChange={(value) => setStatus(value)} value={status} />
