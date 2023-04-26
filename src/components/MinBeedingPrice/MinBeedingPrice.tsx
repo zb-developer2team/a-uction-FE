@@ -4,39 +4,33 @@ import Input from '../../components/Input/Input';
 
 export interface MinBeedingPriceProps {
   className?: string;
-  onChange?: (price: number) => void;
+  onChange?: (currentNumber: number) => void;
 }
 
 export default function MinBeedingPrice({
   className,
   onChange,
 }: MinBeedingPriceProps) {
-  const [price, setPrice] = useState<number | undefined>();
-  const [validateMsg, setValidateMsg] = useState('');
+  const [number, setNumber] = useState('');
+  const [numberMsg, setNumberMsg] = useState('');
 
-  const validatePrice = (price: string) => {
-    return !isNaN(Number(price));
+  const validateNumber = (number: string) => {
+    return number.match(/^[0-9]*$/);
   };
 
-  const isPriceValid = validatePrice(String(price));
-
-  const onChangePrice = useCallback(
+  const onChangeNumber = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      // const currentPrice = Number(e.target.value);
-      const currentPrice = Number(
-        e.target.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-      );
+      const currentNumber = e.target.value;
+      setNumber(currentNumber);
 
-      setPrice(currentPrice);
-
-      if (!validatePrice(e.target.value)) {
-        setValidateMsg('숫자로 입력해 주세요.');
+      if (!validateNumber(currentNumber)) {
+        setNumberMsg('숫자만 입력해주세요.');
       } else {
-        setValidateMsg('');
-        onChange && onChange(currentPrice);
+        setNumberMsg('');
+        if (typeof onChange === 'function') {
+          onChange(Number(currentNumber));
+        }
       }
-
-      console.log('Input 값이 변경되었습니다:', e.target.value);
     },
     []
   );
@@ -49,10 +43,10 @@ export default function MinBeedingPrice({
           placeholder={'bidding'}
           imageType={'none'}
           className="border-2 rounded-lg"
-          onChange={onChangePrice}
+          onChange={onChangeNumber}
         />
         <span className="text-xl mt-1 ml-4">원</span>
-        <span className="mt-3 pl-8 text-Red">{validateMsg}</span>
+        <span className="mt-3 pl-8 text-Red">{numberMsg}</span>
       </div>
     </>
   );

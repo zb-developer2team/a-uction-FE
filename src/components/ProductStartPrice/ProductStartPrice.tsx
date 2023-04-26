@@ -4,35 +4,33 @@ import Input from '../../components/Input/Input';
 
 export interface ProductStartPriceProps {
   className?: string;
-  onChange?: (currentPrice: number) => void;
+  onChange?: (currentNumber: number) => void;
 }
 
 export default function ProductStartPrice({
   className,
   onChange,
 }: ProductStartPriceProps) {
-  const [price, setPrice] = useState<number | undefined>();
-  const [validateMsg, setValidateMsg] = useState('');
+  const [number, setNumber] = useState('');
+  const [numberMsg, setNumberMsg] = useState('');
 
-  const validatePrice = (price: string) => {
-    return !isNaN(Number(price));
+  const validateNumber = (number: string) => {
+    return number.match(/^[0-9]*$/);
   };
 
-  const isPriceValid = validatePrice(String(price));
+  const onChangeNumber = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const currentNumber = e.target.value;
+      setNumber(currentNumber);
 
-  const onChangePrice = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const currentPrice = Number(event.target.value);
-      setPrice(currentPrice);
-
-      if (!validatePrice(String(currentPrice))) {
-        setValidateMsg('숫자로 입력해 주세요.');
+      if (!validateNumber(currentNumber)) {
+        setNumberMsg('숫자만 입력해주세요.');
       } else {
-        setValidateMsg('');
-        onChange && onChange(currentPrice);
+        setNumberMsg('');
+        if (typeof onChange === 'function') {
+          onChange(Number(currentNumber));
+        }
       }
-
-      console.log('Input 값이 변경되었습니다:', currentPrice);
     },
     []
   );
@@ -46,11 +44,11 @@ export default function ProductStartPrice({
           placeholder={'startPrice'}
           imageType={'none'}
           className="border-2 rounded-lg"
-          onChange={onChangePrice}
+          onChange={onChangeNumber}
         />
 
         <span className="text-xl mt-1 ml-4">원</span>
-        <span className="mt-3 pl-8 text-Red">{validateMsg}</span>
+        <span className="mt-3 pl-8 text-Red">{numberMsg}</span>
       </div>
     </>
   );
