@@ -74,7 +74,7 @@ export default function Regist({
     }
 
     const formData = new FormData();
-    formData.append('file', file ?? '');
+    formData.append('files', file ?? '');
     formData.append('itemName', productName);
     formData.append('itemStatus', status);
     formData.append('startingPrice', String(productPrice));
@@ -85,10 +85,10 @@ export default function Regist({
     formData.append('description', productInfo);
 
     axios
-      .post('http://3.35.38.11:8081/auctions', formData, {
+      .post(`http://3.35.38.11:8081/auctions`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`, // 토큰 값이 필요한 경우에는 해당 코드를 추가하여 헤더에 인증 정보를 전송
+          Authorization: `Bearer ${token}`,
           credential: true,
           mode: 'cors',
         },
