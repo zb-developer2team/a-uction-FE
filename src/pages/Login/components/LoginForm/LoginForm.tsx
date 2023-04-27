@@ -107,13 +107,11 @@ export default function LoginForm({ className, ...props }: LoginFormProps) {
         />
       </Link>
 
-      <Link to="/signup">
-        <TextLink
-          url={'/'} //페이지 연결 전 임의로 주소 설정하였습니다.
-          type={'signUp'}
-          className={twMerge('text-center mt-5 mb-10 mx-auto')}
-        />
-      </Link>
+      <TextLink
+        url="/signup" //페이지 연결 전 임의로 주소 설정하였습니다.
+        type={'signUp'}
+        className={twMerge('text-center mt-5 mb-10 mx-auto')}
+      />
     </form>
   );
 }
