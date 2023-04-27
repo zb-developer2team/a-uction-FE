@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import SampleImage from '../../assets/SampleImage.png';
 import Icon from '../Icon/Icon';
+import React from 'react';
 
 export interface ImageButtonProps {
   src: string;

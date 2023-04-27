@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import Image from '../Image/Image';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 export interface ProductProps {
   category: string;

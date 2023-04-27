@@ -2,6 +2,7 @@ import { twMerge } from 'tailwind-merge';
 import KakaoLogin from './components/KakaoLogin/KakaoLogin';
 import LoginForm from './components/LoginForm/LoginForm';
 import LoginTitle from './components/LoginTitle/LoginTitle';
+import React from 'react';
 
 export interface LoginProps {
   className?: string;

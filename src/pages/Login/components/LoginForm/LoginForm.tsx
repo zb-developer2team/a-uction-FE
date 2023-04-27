@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import Input from '../../../../components/Input/Input';
 import Button from '../../../../components/Button/Button';
 import TextLink from '../../../../components/TextLink/TextLink';
+import React from 'react';
 
 export interface LoginFormProps {
   className?: string;
@@ -106,11 +107,13 @@ export default function LoginForm({ className, ...props }: LoginFormProps) {
         />
       </Link>
 
-      <TextLink
-        url={'/'} //페이지 연결 전 임의로 주소 설정하였습니다.
-        type={'signUp'}
-        className={twMerge('text-center mt-5 mb-10 mx-auto')}
-      />
+      <Link to="/signup">
+        <TextLink
+          url={'/'} //페이지 연결 전 임의로 주소 설정하였습니다.
+          type={'signUp'}
+          className={twMerge('text-center mt-5 mb-10 mx-auto')}
+        />
+      </Link>
     </form>
   );
 }

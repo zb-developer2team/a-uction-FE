@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import Header from '../../components/Header/Header';
 import Image from '../../components/Image/Image';
+import React from 'react';
 
 export interface PreparingProps {
   className?: string;

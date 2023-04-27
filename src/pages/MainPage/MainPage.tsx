@@ -2,6 +2,7 @@ import { twMerge } from 'tailwind-merge';
 import Header from '../../components/Header/Header';
 import Product from '../../components/Product/Product';
 import Banner from '../../assets/Banner.png';
+import React from 'react';
 
 export interface MainPageProps {
   children?: string;

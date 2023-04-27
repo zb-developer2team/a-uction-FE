@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import SignUpForm from './components/SignUpForm/SignUpForm';
 import SignUpTitle from './components/SignUpTitle/SignUpTitle';
+import React from 'react';
 
 export interface LoginProps {
   className?: string;

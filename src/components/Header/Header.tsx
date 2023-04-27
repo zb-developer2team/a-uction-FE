@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import HeaderTop from './HeaderTop';
 import HeaderNav from './HeaderNav';
+import React from 'react';
 
 export interface HeaderProps {
   type: 'guest' | 'member';

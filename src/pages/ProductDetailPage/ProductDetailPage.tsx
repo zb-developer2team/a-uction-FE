@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from '../../components/Header/Header';
 import ProductDetail from '../../components/ProductDetail/ProductDetail';
 import Button from '../../components/Button/Button';
+import React from 'react';
 
 export interface ProductDetailProps {
   className?: string;

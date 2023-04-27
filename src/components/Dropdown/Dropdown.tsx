@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import DropdownMenu, { DropdownMenuProps } from './DropdownMenu';
 import { useState } from 'react';
+import React from 'react';
 
 export interface DropdownProps extends DropdownMenuProps {
   type: 'product' | 'sort';

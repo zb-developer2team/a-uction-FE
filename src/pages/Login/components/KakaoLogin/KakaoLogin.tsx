@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import { useState } from 'react';
 import Button from '../../../../components/Button/Button';
+import React from 'react';
 
 export interface KakaoLoginProps {
   className?: string;

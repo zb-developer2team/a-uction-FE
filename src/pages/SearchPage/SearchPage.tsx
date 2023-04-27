@@ -2,6 +2,7 @@ import { twMerge } from 'tailwind-merge';
 import Header from '../../components/Header/Header';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Product from '../../components/Product/Product';
+import React from 'react';
 
 export interface SearchPageProps {
   count?: string;

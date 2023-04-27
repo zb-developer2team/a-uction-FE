@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import { Link } from 'react-router-dom';
 import Image from '../../../../components/Image/Image';
+import React from 'react';
 
 export interface LoginTitleProps {
   className?: string;
