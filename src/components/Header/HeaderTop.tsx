@@ -33,7 +33,7 @@ export default function HeaderTop({
       <Link to="/" className={twMerge(`h-[70px] flex items-center gap-5`)}>
         <Image
           className={twMerge('w-10 h-10 bg-transparent')}
-          src={'/src/assets/auction.png'}
+          src={`${import.meta.env.VITE_IMAGE_PATH}/auction.png`}
           alt={'A+ction logo 입니다.'}
         />
         <span className={twMerge(`text-2xl font-bold`)}>A+uction</span>
@@ -46,7 +46,7 @@ export default function HeaderTop({
           imageType={'none'}
         />
         <Image
-          src={'/src/assets/search.png'}
+          src={`${import.meta.env.VITE_IMAGE_PATH}/search.png`}
           alt={'돋보기 이미지 입니다.'}
           className={twMerge(
             'w-[30px] h-[30px] absolute top-[10px] left-[10px] bg-transparent'
@@ -63,7 +63,10 @@ export default function HeaderTop({
           </Link>
         ) : (
           <Link to="mypage">
-            <ImageButton type={'image'} src={'/src/assets/SampleImage.png'} />
+            <ImageButton
+              type={'image'}
+              src={`${import.meta.env.VITE_IMAGE_PATH}/SampleImage.png`}
+            />
           </Link>
         )}
       </div>
