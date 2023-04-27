@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { token } from '../../main';
 
 export interface PostProductInfo {
   itemName: string;
@@ -9,11 +10,10 @@ export interface PostProductInfo {
   startDateTime: string;
   endDateTime: string;
   description: string;
-  imageSrc: File;
+  files: File;
 }
 
 const getProductInfo = async (
-  token: string,
   productInfo: PostProductInfo,
   files: File
 ): Promise<PostProductInfo> => {
@@ -25,12 +25,15 @@ const getProductInfo = async (
 
     formData.append('data', JSON.stringify(productInfo));
     const response = await axios({
-      method: 'post',
+      method: 'POST',
       url: `http://3.35.38.11:8081/auctions`,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
+        credential: true,
+        mode: 'cors',
       },
+
       data: formData,
     });
     return response.data;
