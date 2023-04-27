@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
@@ -27,10 +27,10 @@ export default function EndDateTime({ onChange, className }: EndDateTimeProps) {
   };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className={twMerge(`flex h-[74px] border-b-[1px] mt-6`)}>
+      <div className={twMerge(`flex h-[74px] mt-6`)}>
         <span className="text-xl font-bold mt-1 mr-10">경매종료시간</span>
         <div className="-mt-3">
-          <DateTimePicker onChange={handleChange} />
+          <DateTimePicker onChange={handleChange} defaultValue={dayjs()} />
         </div>
       </div>
     </LocalizationProvider>

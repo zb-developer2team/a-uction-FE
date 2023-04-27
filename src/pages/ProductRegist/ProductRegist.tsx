@@ -39,8 +39,23 @@ export default function Regist({
   const [startDateTime, setStartDateTime] = useState<string>('');
   const [endDateTime, setEndDateTime] = useState<string>('');
   const [file, setFile] = useState<File | null>(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (startDateTime && endDateTime) {
+      const startTime = new Date(startDateTime).getTime();
+      const endTime = new Date(endDateTime).getTime();
+      if (endTime <= startTime) {
+        setErrorMessage('입력된 날짜가 경매시작시간 보다 이전ㄴ입니다.');
+        setButtonActive(false);
+      } else {
+        setErrorMessage('');
+        setButtonActive(true);
+      }
+    }
+  }, [startDateTime, endDateTime]);
 
   const clickHandler = async () => {
     const allInputsFilled =
@@ -116,7 +131,14 @@ export default function Regist({
         />
         <ProductInfo onChange={(event) => setProductInfo(event.target.value)} />
         <StartDateTime onChange={(date) => setStartDateTime(date)} />
-        <EndDateTime onChange={(date) => setEndDateTime(date)} />
+
+        <div className={twMerge('flex ')}>
+          <EndDateTime onChange={(date) => setEndDateTime(date)} />
+          {errorMessage && (
+            <span className="mt-8 pl-8 text-Red">{errorMessage}</span>
+          )}
+        </div>
+
         <div className={twMerge(`flex justify-center h-[200px] mt-14 mb-14`)}>
           <Button
             type={'active'}
