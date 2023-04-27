@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import Button from '../Button/Button';
 import { useState } from 'react';
+import React from 'react';
 
 export interface ProfileProps {
   id: string;

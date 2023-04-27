@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import { useState } from 'react';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import React from 'react';
 
 export interface ProductCategoryProps {
   className?: string;

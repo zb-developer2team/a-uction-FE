@@ -18,6 +18,7 @@ import { token } from '../../main';
 import getProductInfo, {
   PostProductInfo,
 } from '../../api/ProductInfo/getProductInfo';
+import React from 'react';
 
 export interface ProductRegistProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;

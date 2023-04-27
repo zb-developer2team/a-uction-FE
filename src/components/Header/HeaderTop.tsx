@@ -5,6 +5,7 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import ImageButton from '../ImageButton/ImageButton';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 export interface HeaderTopProps {
   type: 'guest' | 'member';

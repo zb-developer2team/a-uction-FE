@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import { useState } from 'react';
 import RadioButton from '../../components/RadioButton/RadioButton';
+import React from 'react';
 
 export interface ProductStatusProps {
   className?: string;

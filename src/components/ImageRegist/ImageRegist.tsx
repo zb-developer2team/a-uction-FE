@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import Image from '../../components/Image/Image';
 import Button from '../../components/Button/Button';
 import FormData from 'form-data';
+import React from 'react';
 
 interface ImageProps {
   id: number;

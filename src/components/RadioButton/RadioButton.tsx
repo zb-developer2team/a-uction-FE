@@ -1,5 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { useState } from 'react';
+import React from 'react';
 
 export interface RadioButtoProps {
   type: 'used' | 'new';

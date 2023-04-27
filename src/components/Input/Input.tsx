@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import Image from '../Image/Image';
 import { useState } from 'react';
+import React from 'react';
 
 export interface InputProps {
   type: 'text' | 'search' | 'password';

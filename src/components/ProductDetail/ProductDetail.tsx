@@ -4,6 +4,7 @@ import Title from '../Title/Title';
 import CategoryDetail from '../CategoryDetail/CategoryDetail';
 import ProductTime from '../ProductTime/ProductTime';
 import ProductPrice from '../ProductPrice/ProductPrice';
+import React from 'react';
 
 export interface ProductDetailProps {
   children?: string;

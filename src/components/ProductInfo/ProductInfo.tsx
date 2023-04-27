@@ -1,5 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import Input from '../../components/Input/Input';
+import React from 'react';
 
 export interface ProductInfoProps {
   className?: string;

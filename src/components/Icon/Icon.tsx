@@ -2,6 +2,7 @@ import { twMerge } from 'tailwind-merge';
 import user from '../../assets/user.png';
 import lock from '../../assets/lock.png';
 import search from '../../assets/search.png';
+import React from 'react';
 
 export interface IconProps {
   type: 'user' | 'lock' | 'search';

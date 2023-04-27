@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import { useState, useCallback } from 'react';
 import Input from '../../components/Input/Input';
+import React from 'react';
 
 export interface MinBeedingPriceProps {
   className?: string;

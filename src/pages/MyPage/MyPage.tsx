@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Image from '../../components/Image/Image';
 import Profile from '../../components/Profile/Profile';
 import Product from '../../components/Product/Product';
+import React from 'react';
 
 export interface MyPage {
   className?: string;
