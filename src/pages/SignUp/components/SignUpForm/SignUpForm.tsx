@@ -1,15 +1,19 @@
 import { twMerge } from 'tailwind-merge';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Input from '../../../../components/Input/Input';
 import Button from '../../../../components/Button/Button';
 import TextLink from '../../../../components/TextLink/TextLink';
+import { useSignup } from '../../../../hook/useSignUp';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import React from 'react';
 
 export interface SignUpFormProps {
   className?: string;
 }
 
 export default function SignUpForm({ className, ...props }: SignUpFormProps) {
-  // onClick 이벤트를 적용해야해서, 해당 state 관리는 우선 임시로 작성하였습니다!
+  // onClick 이벤트를 적용해야해서, 해당 state 관리는 우선 임시로 작성하였습니다!=
   const [buttonIsActive, setButtonState] = useState(true);
 
   const [email, setEmail] = useState('');
@@ -23,6 +27,8 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
   const [confirmPasswordMsg, setConfirmPasswordMsg] = useState('');
   const [nicknameMsg, setNicknameMsg] = useState('');
   const [numberMsg, setNumberMsg] = useState('');
+
+  const navigate = useNavigate();
 
   function clickHandler() {
     setButtonState(false);
@@ -130,6 +136,23 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
     []
   );
 
+  const { signupHandler, isLoading, isSuccess } = useSignup({
+    userEmail: email,
+    password: password,
+    username: nickname,
+    phoneNumber: number,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/login');
+    }
+  }, [isSuccess]);
+
+  // if (isLoading) {
+  //   return <div>Loading to signup ...</div>;
+  // }
+
   return (
     <form className="flex-col justify-center">
       <div className="relative">
@@ -219,11 +242,11 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
         type={!isAllValid ? 'disabled' : 'active'}
         label={'회원가입'}
         size={'medium'}
-        onClick={clickHandler}
+        onClick={signupHandler}
         className={twMerge('mx-auto my-0')}
       />
       <TextLink
-        url={'/'} //페이지 연결 전 임의로 주소 설정하였습니다.
+        url="/login" //페이지 연결 전 임의로 주소 설정하였습니다.
         type={'logIn'}
         className={twMerge('text-center mt-5 mb-10 mx-auto')}
       />
