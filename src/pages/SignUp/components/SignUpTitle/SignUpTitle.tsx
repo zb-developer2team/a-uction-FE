@@ -12,7 +12,7 @@ export default function SignUpTitle({ className, ...props }: SignUpTitleProps) {
     <>
       <Link to="/">
         <Image
-          src={'/src/assets/auction.png'}
+          src={`${import.meta.env.VITE_IMAGE_PATH}/auction.png`}
           alt={'A+uction 로고입니다.'}
           className={twMerge(
             'w-20 h-20 bg-transparent mx-auto absolute top-5 left-5'
