@@ -1,27 +1,25 @@
 import { twMerge } from 'tailwind-merge';
-import { Link } from 'react-router-dom';
-import { useCallback, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
 import Input from '../../../../components/Input/Input';
 import Button from '../../../../components/Button/Button';
 import TextLink from '../../../../components/TextLink/TextLink';
 import React from 'react';
+import axios from 'axios';
+import { useLogin } from '../../../../hook/useLogin';
 
 export interface LoginFormProps {
   className?: string;
 }
 
 export default function LoginForm({ className, ...props }: LoginFormProps) {
-  const [buttonIsActive, setButtonState] = useState(true);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [emailMsg, setEmailMsg] = useState('');
   const [passwordMsg, setPasswordMsg] = useState('');
 
-  function clickHandler() {
-    setButtonState(false);
-  }
+  const navigate = useNavigate();
 
   const validateEmail = (email: string) => {
     return email
@@ -67,6 +65,19 @@ export default function LoginForm({ className, ...props }: LoginFormProps) {
     }
   }, []);
 
+  const { LoginHandler, isSuccess } = useLogin({
+    userEmail: email,
+    password: password,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/');
+    }
+  }, [isSuccess]);
+
+  console.log(axios.defaults.headers.common['Authorization']);
+
   return (
     <form className="flex-col justify-center border-b-2 border-LightGray">
       <div className="relative">
@@ -102,7 +113,7 @@ export default function LoginForm({ className, ...props }: LoginFormProps) {
           type={!isAllValid ? 'disabled' : 'active'}
           label={'로그인'}
           size={'medium'}
-          onClick={clickHandler}
+          onClick={LoginHandler}
           className={twMerge('mx-auto my-0')}
         />
       </Link>
