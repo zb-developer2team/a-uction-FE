@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Image from '../../components/Image/Image';
 import Profile from '../../components/Profile/Profile';
@@ -10,15 +10,69 @@ export interface MyPage {
   className?: string;
 }
 
+export interface ProductData {
+  itemName: string;
+  category: string;
+  startPrice: string;
+  price: string;
+}
+
+const dummyProducts: ProductData[] = [
+  {
+    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
+    category: 'ETC',
+    startPrice: '5000',
+    price: '5,000',
+  },
+  {
+    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
+    category: 'ETC',
+    startPrice: '5000',
+    price: '120,000',
+  },
+  {
+    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
+    category: 'ETC',
+    startPrice: '5000',
+    price: '5,000',
+  },
+  {
+    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
+    category: 'ETC',
+    startPrice: '5000',
+    price: '5,000',
+  },
+  {
+    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
+    category: 'ETC',
+    startPrice: '5000',
+    price: '5,000',
+  },
+];
+
 export default function MyPage({ className }: MyPage) {
   const [selectedTab, setSelectedTab] = useState('내가 참여한');
+  const [products, setProducts] = useState<ProductData[]>([]);
 
-  const products = [
-    { category: '미술품', startPrice: '50,000', price: '60,000' },
-    { category: '가구', startPrice: '100,000', price: '120,000' },
-    { category: '디지털', startPrice: '200,000', price: '250,000' },
-    { category: '의류', startPrice: '30,000', price: '35,000' },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      // const response = await axios.get('/auctions/my-auctions');
+      // setProducts(response.data);
+
+      setProducts(dummyProducts);
+    };
+    fetchData();
+  }, []);
+
+  const productRows: ProductData[][] = [];
+  let currentRow: ProductData[] = [];
+  for (let i = 0; i < products.length; i++) {
+    currentRow.push(products[i]);
+    if (currentRow.length === 4 || i === products.length - 1) {
+      productRows.push(currentRow);
+      currentRow = [];
+    }
+  }
 
   return (
     <div className={twMerge(`w-screen font-line-seed-sans-kr`)}>
@@ -72,14 +126,28 @@ export default function MyPage({ className }: MyPage) {
           </li>
         </ul>
       </div>
-      <div className="flex justify-evenly mt-10 mb-10">
-        {products.map((product, index) => (
-          <Product
-            key={index}
-            category={product.category}
-            startPrice={product.startPrice}
-            price={product.price}
-          />
+      <div className="flex absolute justify-evenly flex-wrap ml-24 mt-32 mb-10">
+        {productRows.map((row, rowIndex) => (
+          <div className="flex w-full z-1" key={rowIndex}>
+            {row.map((product, index) => (
+              <div
+                className={twMerge(
+                  `w-full sm:w-1/2 md:w-1/4 mb-16 ${
+                    index !== row.length - 1 ? 'sm:mr-2' : ''
+                  }`
+                )}
+                key={`product-${index}`}
+              >
+                <Product
+                  key={index}
+                  itemName={product.itemName}
+                  category={product.category}
+                  startPrice={product.startPrice}
+                  price={product.price}
+                />
+              </div>
+            ))}
+          </div>
         ))}
       </div>
     </div>

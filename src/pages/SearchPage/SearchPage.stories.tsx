@@ -17,6 +17,4 @@ export default meta;
 const Template: StoryFn<typeof SearchPage> = (args) => <SearchPage {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  count: '34',
-};
+Default.args = {};

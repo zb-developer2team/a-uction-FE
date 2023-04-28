@@ -15,8 +15,8 @@ import Preparing from './pages/Preparing/Preparing';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
 
-export var token =
-  'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJtYXN0ZXIiLCJzdWIiOiJBY2Nlc3NUb2tlbiIsImlhdCI6MTY4MTg4MTE2NCwiZXhwIjoxNjgzMDkwNzY0fQ.WTVSTVsxVi8NNlhiENVJgqNNqSO96LA9TDrAe8Bymys';
+export const token =
+  'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJhZG1pbkBhYmMuY29tIiwic3ViIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2ODI2MDYwODcsImV4cCI6MTY4MjYwOTY4N30.ZSRZfUQqRrOkT-swd15M-dYLJnaBjXtBeqVS4VeMyfM';
 
 const queryClient = new QueryClient();
 
