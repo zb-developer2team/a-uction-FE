@@ -74,7 +74,7 @@ const dummyProducts: ProductData[] = [
   },
 ];
 
-export default function SearchPage({ className }: SearchPageProps) {
+export default function SearchPage({ className }: Partial<SearchPageProps>) {
   const [products, setProducts] = useState<ProductData[]>([]);
   const [count, setCount] = useState<number>(0);
 

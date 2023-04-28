@@ -14,10 +14,12 @@ export default function MyPage({ className }: MyPage) {
   const [selectedTab, setSelectedTab] = useState('내가 참여한');
 
   const products = [
-    { category: '미술품', startPrice: '50,000', price: '60,000' },
-    { category: '가구', startPrice: '100,000', price: '120,000' },
-    { category: '디지털', startPrice: '200,000', price: '250,000' },
-    { category: '의류', startPrice: '30,000', price: '35,000' },
+    {
+      itemName: 'Apple 정품 아이폰 14 Pro 자급제',
+      category: 'ETC',
+      startPrice: '5000',
+      price: '5,000',
+    },
   ];
 
   return (
@@ -75,6 +77,7 @@ export default function MyPage({ className }: MyPage) {
       <div className="flex justify-evenly mt-10 mb-10">
         {products.map((product, index) => (
           <Product
+            itemName={product.itemName}
             key={index}
             category={product.category}
             startPrice={product.startPrice}
