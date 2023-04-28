@@ -19,7 +19,7 @@ export default function ProductDetailPage({ className }: ProductDetailProps) {
 
   return (
     <div className={twMerge(`w-screen`)}>
-      <Header type={'member'} />
+      <Header type={'guest'} />
       <div>
         <ProductDetail />
         <div className={twMerge(`w-[856px] my-0 mx-auto text-right`)}>

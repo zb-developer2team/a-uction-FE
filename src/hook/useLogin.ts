@@ -1,6 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { LoginProps, LoginResponse } from '../api/LoginInfo/user';
+import { useSetRecoilState } from 'recoil';
+import { isLoginState } from '../recoil/atom';
 
 export const login = async ({ userEmail, password }: LoginProps) => {
   const url = `http://3.35.38.11:8081/login`;
@@ -9,6 +11,8 @@ export const login = async ({ userEmail, password }: LoginProps) => {
 };
 
 export const useLogin = (props: LoginProps) => {
+  const setLogin = useSetRecoilState(isLoginState);
+
   const {
     mutate: signin,
     data,
@@ -24,6 +28,8 @@ export const useLogin = (props: LoginProps) => {
           axios.defaults.headers.common[
             'Authorization'
           ] = `Bearer ${res.accessToken}`;
+
+          setLogin(true);
         }
       }
     },
