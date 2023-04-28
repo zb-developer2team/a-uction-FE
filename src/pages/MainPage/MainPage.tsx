@@ -20,65 +20,7 @@ export default function MainPage({ children, className }: MainPageProps) {
       <div className="mb-[120px]">
         <div className="flex justify-evenly mt-16">
           <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-        </div>
-        <div className="flex justify-evenly mt-16">
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-        </div>
-        <div className="flex justify-evenly mt-16">
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
-            category={'category'}
-            startPrice={'50,000'}
-            price={'60,000'}
-          />
-          <Product
+            itemName={'아이폰'}
             category={'category'}
             startPrice={'50,000'}
             price={'60,000'}
