@@ -20,7 +20,7 @@ export default function ProductDetail({
     <>
       <div
         className={twMerge(
-          `flex justify-center font-line-seed-sans-kr`,
+          `flex justify-center mt-24 font-line-seed-sans-kr`,
           className
         )}
       >
