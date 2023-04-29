@@ -13,8 +13,14 @@ export default function MainPage({ children, className }: MainPageProps) {
   return (
     <div className={twMerge(`w-screen font-line-seed-sans-kr`)}>
       <Header type={'guest'} />
-      <div className={twMerge(`h-[280px] mt-10`)}>
-        <img src={Banner} />
+      <div className={twMerge(`w-full h-[450px] overflow-hidden`)}>
+        <div
+          className={twMerge(
+            `w-[2560px] h-[450px] absolute left-1/2 -translate-x-1/2`
+          )}
+        >
+          <img src={Banner} className={twMerge(`h-[450px] my-0 mx-auto`)} />
+        </div>
       </div>
       <div className="text-2xl font-bold mt-20 ml-10">인기 많은 경매 상품</div>
       <div className="mb-[120px]">
