@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import { isLoginState } from '../recoil/atom';
 
 export const login = async ({ userEmail, password }: LoginProps) => {
-  const url = `http://3.35.38.11:8081/login`;
+  const url = `https://dev2team-server.site/login`;
   const res = await axios.post<LoginResponse>(url, { userEmail, password });
   return res.data;
 };

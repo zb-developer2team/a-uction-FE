@@ -9,7 +9,7 @@ export const signUp = async ({
   password,
   phoneNumber,
 }: SignUpProps) => {
-  const url = `http://3.35.38.11:8081/register`;
+  const url = `https://dev2team-server.site/register`;
   const res = await axios.post(
     url,
     {
