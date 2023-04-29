@@ -24,14 +24,19 @@ export default function Status({ onChange, className }: ProductStatusProps) {
         <span className="text-xl font-bold mt-1 mr-10">상태</span>
         <div className="flex mt-2">
           <RadioButton
-            type={'used'}
-            checked={status === 'used'}
-            onChange={() => handleStatusChange('used')}
+            type={'good'}
+            checked={status === 'GOOD'}
+            onChange={() => handleStatusChange('GOOD')}
           />
           <RadioButton
-            type={'new'}
-            checked={status === 'new'}
-            onChange={() => handleStatusChange('new')}
+            type={'best'}
+            checked={status === 'BEST'}
+            onChange={() => handleStatusChange('BEST')}
+          />
+          <RadioButton
+            type={'bad'}
+            checked={status === 'BAD'}
+            onChange={() => handleStatusChange('BAD')}
           />
         </div>
       </div>

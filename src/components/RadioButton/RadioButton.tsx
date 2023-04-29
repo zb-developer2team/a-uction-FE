@@ -3,7 +3,7 @@ import { useState } from 'react';
 import React from 'react';
 
 export interface RadioButtoProps {
-  type: 'used' | 'new';
+  type: 'good' | 'best' | 'bad';
   className?: string;
   checked: boolean;
   onChange: (value: string) => void;
@@ -17,8 +17,9 @@ export default function Radio({
 }: RadioButtoProps) {
   const [radioButton, setRadioButton] = useState('');
   const productState = {
-    used: '중고',
-    new: '새 상품',
+    good: 'GOOD',
+    best: 'BEST',
+    bad: 'BAD',
   };
 
   const radioButtonHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
