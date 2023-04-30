@@ -2,38 +2,41 @@ import axios from 'axios';
 import { token } from '../../main';
 
 export interface PostProductInfo {
-  itemName: string;
-  itemStatus: string;
-  startingPrice: number;
-  minimumBid: number;
-  category: string;
-  startDateTime: string;
-  endDateTime: string;
-  description: string;
-  files: File;
+  auction: {
+    itemName: string;
+    itemStatus: string;
+    startingPrice: number;
+    minimumBid: number;
+    category: string;
+    startDateTime: string;
+    endDateTime: string;
+    description: string;
+  };
+  files: File[];
 }
 
 const getProductInfo = async (
-  productInfo: PostProductInfo,
-  files: File
+  productInfo: PostProductInfo
 ): Promise<PostProductInfo> => {
   try {
     const formData = new FormData();
-
-    formData.append('file', files);
-    formData.append('productInfo', JSON.stringify(productInfo));
+    const { auction, files } = productInfo;
+    formData.append('auction', JSON.stringify(auction));
+    files.forEach((file) => {
+      formData.append('files', file);
+    });
 
     formData.append('data', JSON.stringify(productInfo));
     const response = await axios({
       method: 'POST',
-      url: `http://3.35.38.11:8081/auctions`,
+      url: `https://dev2team-server.site`,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
         credential: true,
-        mode: 'cors',
+        mode: 'same-origin',
+        credentials: 'include',
       },
-
       data: formData,
     });
     return response.data;
