@@ -12,11 +12,13 @@ import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage';
 import MyBiddingPage from './pages/MyBidding/MyBidding';
 import DepositPage from './pages/DepositPage/DepositPage';
 import Preparing from './pages/Preparing/Preparing';
+import ProductFix from './pages/ProductFix/ProductFix';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
 
 export const token =
-  'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJhZG1pbkBhYmMuY29tIiwic3ViIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2ODI2MDYwODcsImV4cCI6MTY4MjYwOTY4N30.ZSRZfUQqRrOkT-swd15M-dYLJnaBjXtBeqVS4VeMyfM';
+  'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJ6ZXJvYmFzZUBnbWFpbC5jb20iLCJzdWIiOiJBY2Nlc3NUb2tlbiIsImlhdCI6MTY4MjgzMzE3MywiZXhwIjoxNjgyODM2NzczfQ.F-w1T2NqiOcqOD6hhoDXgsYRM34LWqVDGz1tzak1PnM';
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/result" element={<SearchPage />} />
             <Route path="/preparing" element={<Preparing />} />
             <Route path="/inform" element={<MainPage />} />
+            <Route path="/modify" element={<ProductFix />} />
           </Routes>
         </BrowserRouter>
       </React.StrictMode>
