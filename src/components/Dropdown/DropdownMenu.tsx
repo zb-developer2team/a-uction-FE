@@ -16,7 +16,7 @@ export default function DropdownMenu({
   ...props
 }: DropdownMenuProps) {
   const category = {
-    product: ['가구', '가전/디지털', '미술품'],
+    product: ['CLOTHES', 'SHOES', 'BAG', 'ARTWORK', 'ETC'],
     sort: ['시작가 높은 순', '시작가 낮은 순', '마감순', '등록일 순'],
   };
 
