@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import getFixInfo, { PostFixInfo } from '../api/ProductInfo/getFixInfo';
 
 export function useFixInfoQuery(token: string, FixInfo: PostFixInfo) {
