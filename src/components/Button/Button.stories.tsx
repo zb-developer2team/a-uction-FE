@@ -100,3 +100,17 @@ Auction.args = {
   size: 'xlarge',
   label: '경매 참여하기',
 };
+
+const WhiteButton: StoryFn<typeof Button> = (args) => (
+  <Button
+    className="bg-White border-2 border-Gray hover:bg-Gray hover:text-White hover:border-2 hover:Gray text-2xl text-Gray"
+    {...args}
+  />
+);
+
+export const Price = WhiteButton.bind({});
+Bidding.args = {
+  type: 'active',
+  size: 'large',
+  label: '7,000원', // 받아온 현재가격 넣을 예정
+};
