@@ -48,7 +48,7 @@ export default function Regist({
       const startTime = new Date(startDateTime).getTime();
       const endTime = new Date(endDateTime).getTime();
       if (endTime <= startTime) {
-        setErrorMessage('입력된 날짜가 경매시작시간 보다 이전ㄴ입니다.');
+        setErrorMessage('입력된 날짜가 경매시작시간 보다 이전입니다.');
         setButtonActive(false);
       } else {
         setErrorMessage('');
@@ -74,23 +74,33 @@ export default function Regist({
     }
 
     const formData = new FormData();
-    formData.append('files', file ?? '');
-    formData.append('itemName', productName);
-    formData.append('itemStatus', status);
-    formData.append('startingPrice', String(productPrice));
-    formData.append('minimumBid', String(minBidPrice));
-    formData.append('category', category);
-    formData.append('startDateTime', startDateTime);
-    formData.append('endDateTime', endDateTime);
-    formData.append('description', productInfo);
+
+    const files = Array.from(formData.getAll('files'));
+    formData.append(
+      'auction',
+      JSON.stringify({
+        itemName: productName,
+        itemStatus: status,
+        startingPrice: productPrice,
+        minimumBid: minBidPrice,
+        category,
+        startDateTime,
+        endDateTime,
+        description: productInfo,
+      })
+    );
+    formData.append('files', file);
+    // for (let i = 0; i < files.length; i++) {
+    //   formData.append(`files[${i}]`, files[i]);
+    // }
 
     axios
-      .post(`http://3.35.38.11:8081/auctions`, formData, {
+      .post(`https://dev2team-server.site/auctions`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
           credential: true,
-          mode: 'cors',
+          mode: 'same-origin',
         },
       })
       .then((response) => {
