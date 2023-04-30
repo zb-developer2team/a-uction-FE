@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import getFixInfo, { PostFixInfo } from '../api/ProductInfo/getFixInfo';
 
-export function useFixInfoQuery(token: string, FixInfo: PostFixInfo) {
+export function useFixInfoQuery(FixInfo: PostFixInfo) {
   return useQuery<PostFixInfo, Error>(['FixInfo', FixInfo], () =>
     getFixInfo(FixInfo)
   );
