@@ -17,6 +17,6 @@
     "strict": true,
     "skipLibCheck": true,
     "typeRoots": ["types"],
-    "types": ["vite/client", "@types/react-query"]
+    "types": ["vite/client"]
   }
 }
