@@ -1,10 +1,11 @@
 import { twMerge } from 'tailwind-merge';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Header from '../../components/Header/Header';
 import Image from '../../components/Image/Image';
 import Profile from '../../components/Profile/Profile';
-import Product from '../../components/Product/Product';
-import React from 'react';
+import Participated from '../../pages/Participated/Participated';
+import Registered from '../../pages/Registered/Registered';
+import Purchased from '../../pages/Purchased/Purchased';
 
 export interface MyPage {
   className?: string;
@@ -51,7 +52,9 @@ const dummyProducts: ProductData[] = [
 ];
 
 export default function MyPage({ className }: MyPage) {
-  const [selectedTab, setSelectedTab] = useState('내가 참여한');
+  const [selectedTab, setSelectedTab] = useState<
+    '내가 참여한' | '내가 등록한' | '내가 구매한'
+  >('내가 참여한');
   const [products, setProducts] = useState<ProductData[]>([]);
 
   useEffect(() => {
@@ -106,6 +109,7 @@ export default function MyPage({ className }: MyPage) {
           >
             내가 참여한
           </li>
+
           <span className="ml-6 mr-6">|</span>
           <li
             className={`cursor-pointer ${
@@ -126,30 +130,9 @@ export default function MyPage({ className }: MyPage) {
           </li>
         </ul>
       </div>
-      <div className="flex absolute justify-evenly flex-wrap ml-24 mt-32 mb-10">
-        {productRows.map((row, rowIndex) => (
-          <div className="flex w-full z-1" key={rowIndex}>
-            {row.map((product, index) => (
-              <div
-                className={twMerge(
-                  `w-full sm:w-1/2 md:w-1/4 mb-16 ${
-                    index !== row.length - 1 ? 'sm:mr-2' : ''
-                  }`
-                )}
-                key={`product-${index}`}
-              >
-                <Product
-                  key={index}
-                  itemName={product.itemName}
-                  category={product.category}
-                  startPrice={product.startPrice}
-                  price={product.price}
-                />
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+      {selectedTab === '내가 참여한' && <Participated />}
+      {selectedTab === '내가 등록한' && <Registered />}
+      {selectedTab === '내가 구매한' && <Purchased />}
     </div>
   );
 }
