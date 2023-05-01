@@ -261,7 +261,7 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
           label={'인증하기'}
           size={'xsmall'}
           className="text-sm absolute right-[10px] top-[10px]"
-          onClick={checkNumber}
+          onClick={clickHandler}
         />
         <p className={twMerge('mt-[5px] mb-5 pl-5 text-Red absolute bottom-0')}>
           {numberMsg}
