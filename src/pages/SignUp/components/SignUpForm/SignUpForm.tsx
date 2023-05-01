@@ -13,28 +13,25 @@ export interface SignUpFormProps {
 }
 
 export default function SignUpForm({ className, ...props }: SignUpFormProps) {
-  // onClick 이벤트를 적용해야해서, 해당 state 관리는 우선 임시로 작성하였습니다!=
-  const [buttonIsActive, setButtonState] = useState(true);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
   const [nickname, setNickname] = useState('');
-  const [number, setNumber] = useState('');
+  const [phoneNumber, setNumber] = useState('');
+  const [code, setCode] = useState('');
 
   const [emailMsg, setEmailMsg] = useState('');
   const [passwordMsg, setPasswordMsg] = useState('');
   const [confirmPasswordMsg, setConfirmPasswordMsg] = useState('');
   const [nicknameMsg, setNicknameMsg] = useState('');
   const [numberMsg, setNumberMsg] = useState('');
+  const [validateCodeMsg, setValidateCodeMsg] = useState('');
 
   const [checkMail, setCheckMail] = useState(true);
+  const [checkNumber, setCheckNumber] = useState(true);
+  const [checkCode, setCheckCode] = useState(true);
 
   const navigate = useNavigate();
-
-  function clickHandler() {
-    setButtonState(false);
-  }
 
   const validateEmail = (email: string) => {
     return email
@@ -60,7 +57,7 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
   const isPwdValid = validatePwd(password);
   const isConfirmPwd = password === confirmPwd;
   const isNicknameValid = validateNickname(nickname);
-  const isNumberValid = validateNumber(number);
+  const isNumberValid = validateNumber(phoneNumber);
 
   const isAllValid =
     isEmailValid &&
@@ -138,11 +135,16 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
     []
   );
 
+  const onChangeCode = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const currentPassword = e.target.value;
+    setCode(currentPassword);
+  }, []);
+
   const { signupHandler, isLoading, isSuccess } = useSignup({
     userEmail: email,
     password: password,
     username: nickname,
-    phoneNumber: number,
+    phoneNumber: phoneNumber,
   });
 
   useEffect(() => {
@@ -165,6 +167,51 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
         !result.message
           ? setEmailMsg('')
           : setEmailMsg('이미 존재하는 이메일입니다.');
+      }
+    } catch (err) {
+      console.error(err);
+      console.log('실패');
+    }
+  };
+
+  const checkPhoneNumber = async () => {
+    try {
+      const result = await axios
+        .post(`https://dev2team-server.site/register/verify/sms`, {
+          phoneNumber,
+        })
+        .then((response) => response.data);
+      console.log(result.message);
+      console.log(checkNumber);
+
+      setCheckNumber(result.message);
+      {
+        !result.message
+          ? setNumberMsg('')
+          : setNumberMsg('이미 가입된 번호입니다.');
+      }
+    } catch (err) {
+      console.error(err);
+      console.log('실패');
+    }
+  };
+
+  const checkValidateCode = async () => {
+    try {
+      const result = await axios
+        .post(`https://dev2team-server.site/register/verify/sms/codeCheck`, {
+          phoneNumber,
+          code,
+        })
+        .then((response) => response.data);
+      console.log(result.message);
+      console.log(!checkCode);
+
+      setCheckCode(result.message);
+      {
+        !result.message
+          ? setValidateCodeMsg('')
+          : setValidateCodeMsg('인증코드를 확인해주세요');
       }
     } catch (err) {
       console.error(err);
@@ -256,17 +303,63 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
           className="mb-[50px]"
           onChange={onChangeNumber}
         />
-        <Button
-          type={!isNumberValid ? 'disabled' : 'active'}
-          label={'인증하기'}
-          size={'xsmall'}
-          className="text-sm absolute right-[10px] top-[10px]"
-          onClick={clickHandler}
-        />
+        {checkNumber ? (
+          <Button
+            type={!isNumberValid ? 'disabled' : 'active'}
+            label={'인증하기'}
+            size={'xsmall'}
+            className="text-sm absolute right-[10px] top-[10px]"
+            onClick={checkPhoneNumber}
+          />
+        ) : (
+          <Button
+            type={'disabled'}
+            label={'인증하기'}
+            size={'xsmall'}
+            className="text-sm absolute right-[10px] top-[10px]"
+            onClick={checkPhoneNumber}
+          />
+        )}
         <p className={twMerge('mt-[5px] mb-5 pl-5 text-Red absolute bottom-0')}>
           {numberMsg}
         </p>
       </div>
+      {checkNumber ? (
+        ''
+      ) : (
+        <div className="relative">
+          <label className={twMerge('sr-only')}>인증번호</label>
+          <Input
+            type={'text'}
+            placeholder={'validate'}
+            imageType={'number'}
+            className="mb-[50px]"
+            onChange={onChangeCode}
+          />
+          {checkCode ? (
+            <Button
+              type={!isNumberValid ? 'disabled' : 'active'}
+              label={'확인'}
+              size={'xsmall'}
+              className="text-sm absolute right-[10px] top-[10px]"
+              onClick={checkValidateCode}
+            />
+          ) : (
+            <Button
+              type={'disabled'}
+              label={'완료'}
+              size={'xsmall'}
+              className="text-sm absolute right-[10px] top-[10px]"
+              onClick={checkValidateCode}
+            />
+          )}
+          <p
+            className={twMerge('mt-[5px] mb-5 pl-5 text-Red absolute bottom-0')}
+          >
+            {validateCodeMsg}
+          </p>
+        </div>
+      )}
       <Button
         type={!isAllValid ? 'disabled' : 'active'}
         label={'회원가입'}
