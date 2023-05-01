@@ -23,14 +23,14 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        'https://dev2team-server.site/auctions/',
+        'https://dev2team-server.site/auctions/my-auctions',
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      setProducts(response.data);
+      setProducts(response.data.content);
     };
     fetchData();
   }, []);
