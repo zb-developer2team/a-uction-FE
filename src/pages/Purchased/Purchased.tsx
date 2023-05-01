@@ -10,64 +10,46 @@ export interface SearchPageProps {
 export interface ProductData {
   itemName: string;
   category: string;
-  startPrice: string;
+  startingPrice: string;
   price: string;
+  imagesSrc: string[];
 }
 
 const dummyProducts: ProductData[] = [
   {
     itemName: '아이폰 iphone1',
     category: 'ETC',
-    startPrice: '5000',
+    startingPrice: '5000',
     price: '5,000',
+    imagesSrc: [],
   },
   {
     itemName: '아이폰 iphone1',
     category: 'ETC',
-    startPrice: '5000',
+    startingPrice: '5000',
     price: '120,000',
+    imagesSrc: [],
   },
   {
     itemName: '아이폰 iphone1',
     category: 'ETC',
-    startPrice: '5000',
+    startingPrice: '5000',
     price: '5,000',
+    imagesSrc: [],
   },
   {
     itemName: '아이폰 iphone1',
     category: 'ETC',
-    startPrice: '5000',
+    startingPrice: '5000',
     price: '120,000',
+    imagesSrc: [],
   },
   {
     itemName: '아이폰 iphone1',
     category: 'ETC',
-    startPrice: '5000',
+    startingPrice: '5000',
     price: '5,000',
-  },
-  {
-    itemName: '아이폰 iphone1',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
-  },
-  {
-    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
-  },
-  {
-    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
-  },
-  {
-    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
+    imagesSrc: [],
   },
 ];
 
@@ -115,8 +97,9 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
                     key={index}
                     itemName={product.itemName}
                     category={product.category}
-                    startPrice={product.startPrice}
+                    startingPrice={product.startingPrice}
                     price={product.price}
+                    imagesSrc={product.imagesSrc}
                   />
                 </div>
               ))}

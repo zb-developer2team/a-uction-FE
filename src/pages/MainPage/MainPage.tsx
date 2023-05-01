@@ -13,64 +13,46 @@ export interface MainPageProps {
 export interface ProductData {
   itemName: string;
   category: string;
-  startPrice: string;
+  startingPrice: string;
   price: string;
+  imagesSrc: [];
 }
 
 const dummyProducts: ProductData[] = [
   {
     itemName: 'Apple 정품 아이폰 14 Pro 자급제',
     category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
+    startingPrice: '5000',
+    price: '999원',
+    imagesSrc: [],
   },
   {
     itemName: 'Apple 정품 아이폰 14 Pro 자급제',
     category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
+    startingPrice: '5000',
+    price: '999원',
+    imagesSrc: [],
   },
   {
     itemName: 'Apple 정품 아이폰 14 Pro 자급제',
     category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
+    startingPrice: '5000',
+    price: '999원',
+    imagesSrc: [],
   },
   {
     itemName: 'Apple 정품 아이폰 14 Pro 자급제',
     category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
+    startingPrice: '5000',
+    price: '999원',
+    imagesSrc: [],
   },
   {
     itemName: 'Apple 정품 아이폰 14 Pro 자급제',
     category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
-  },
-  {
-    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
-  },
-  {
-    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
-  },
-  {
-    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
-  },
-  {
-    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
+    startingPrice: '5000',
+    price: '999원',
+    imagesSrc: [],
   },
 ];
 
@@ -89,10 +71,14 @@ export default function MainPage({ children, className }: MainPageProps) {
 
   const productRows: ProductData[][] = [];
   let currentRow: ProductData[] = [];
+
+  console.log(products);
   for (let i = 0; i < products.length; i++) {
     currentRow.push(products[i]);
+    console.log(products[i].imagesSrc);
     if (currentRow.length === 4 || i === products.length - 1) {
       productRows.push(currentRow);
+
       currentRow = [];
     }
   }
@@ -126,8 +112,9 @@ export default function MainPage({ children, className }: MainPageProps) {
                   key={index}
                   itemName={product.itemName}
                   category={product.category}
-                  startPrice={product.startPrice}
+                  startingPrice={product.startingPrice}
                   price={product.price}
+                  imagesSrc={product.imagesSrc}
                 />
               </div>
             ))}
