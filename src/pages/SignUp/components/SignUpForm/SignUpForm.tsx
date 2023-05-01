@@ -172,28 +172,6 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
     }
   };
 
-  const checkNumber = async () => {
-    try {
-      const result = await axios
-        .post(
-          `https://dev2team-server.site/register/verify/sms`,
-          JSON.parse(number)
-        )
-        .then((response) => response.data);
-      console.log(result.message === '');
-      console.log(result.message);
-      setCheckMail(result.message);
-      {
-        !result.message
-          ? setEmailMsg('')
-          : setEmailMsg('다른 번호로 가입해주세요.');
-      }
-    } catch (err) {
-      console.error(err);
-      console.log('실패');
-    }
-  };
-
   return (
     <form className="flex-col justify-center">
       <div className="relative">
