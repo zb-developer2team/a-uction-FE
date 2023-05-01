@@ -28,7 +28,7 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
   const [nicknameMsg, setNicknameMsg] = useState('');
   const [numberMsg, setNumberMsg] = useState('');
 
-  const [checkMail, setCheckMail] = useState(false);
+  const [checkMail, setCheckMail] = useState(true);
 
   const navigate = useNavigate();
 
