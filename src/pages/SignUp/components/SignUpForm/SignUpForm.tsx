@@ -13,9 +13,6 @@ export interface SignUpFormProps {
 }
 
 export default function SignUpForm({ className, ...props }: SignUpFormProps) {
-  // onClick 이벤트를 적용해야해서, 해당 state 관리는 우선 임시로 작성하였습니다!=
-  const [buttonIsActive, setButtonState] = useState(true);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
@@ -35,10 +32,6 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
   const [checkCode, setCheckCode] = useState(true);
 
   const navigate = useNavigate();
-
-  function clickHandler() {
-    setButtonState(false);
-  }
 
   const validateEmail = (email: string) => {
     return email
