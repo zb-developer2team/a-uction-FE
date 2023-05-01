@@ -17,7 +17,7 @@ export default function DropdownMenu({
 }: DropdownMenuProps) {
   const category = {
     product: ['CLOTHES', 'SHOES', 'BAG', 'ARTWORK', 'ETC'],
-    sort: ['시작가 높은 순', '시작가 낮은 순', '마감순', '등록일 순'],
+    sort: ['시작일', '종료일', '시작금액'],
   };
 
   const size = {
@@ -35,10 +35,6 @@ export default function DropdownMenu({
       onDropdownClick(item);
     }
   };
-
-  // useEffect(() => {
-  //   console.log('keyPrefix changed: ', keyPrefix);
-  // }, [keyPrefix]);
 
   return (
     <ul
