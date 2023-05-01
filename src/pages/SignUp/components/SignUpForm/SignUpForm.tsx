@@ -160,9 +160,6 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
       const result = await axios
         .post(`https://dev2team-server.site/register/emailCheck`, { email })
         .then((response) => response.data);
-      console.log(result.message === '');
-      console.log(result.message);
-      console.log(!checkMail);
       setCheckMail(result.message);
       {
         !result.message
