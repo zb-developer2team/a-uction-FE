@@ -28,6 +28,8 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
   const [nicknameMsg, setNicknameMsg] = useState('');
   const [numberMsg, setNumberMsg] = useState('');
 
+  const [checkMail, setCheckMail] = useState(false);
+
   const navigate = useNavigate();
 
   function clickHandler() {
@@ -153,6 +155,23 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
   //   return <div>Loading to signup ...</div>;
   // }
 
+  const checkEmail = async () => {
+    try {
+      const result = await axios
+        .post(`https://dev2team-server.site/register/emailCheck`, { email })
+        .then((response) => response.data);
+      setCheckMail(result.message);
+      {
+        !result.message
+          ? setEmailMsg('')
+          : setEmailMsg('이미 존재하는 이메일입니다.');
+      }
+    } catch (err) {
+      console.error(err);
+      console.log('실패');
+    }
+  };
+
   return (
     <form className="flex-col justify-center">
       <div className="relative">
@@ -164,13 +183,23 @@ export default function SignUpForm({ className, ...props }: SignUpFormProps) {
           className="mb-[50px]"
           onChange={onChangeEmail}
         />
-        <Button
-          type={!isEmailValid ? 'disabled' : 'active'}
-          label={'중복체크'}
-          size={'xsmall'}
-          className="text-sm absolute right-[10px] top-[10px]"
-          onClick={clickHandler}
-        />
+        {!checkMail ? (
+          <Button
+            type={'disabled'}
+            label={'확인완료'}
+            size={'xsmall'}
+            className="text-sm absolute right-[10px] top-[10px]"
+            onClick={checkEmail}
+          />
+        ) : (
+          <Button
+            type={!isEmailValid ? 'disabled' : 'active'}
+            label={'중복체크'}
+            size={'xsmall'}
+            className="text-sm absolute right-[10px] top-[10px]"
+            onClick={checkEmail}
+          />
+        )}
         <p className={twMerge('mt-[5px] mb-5 pl-5 text-Red absolute bottom-0')}>
           {emailMsg}
         </p>
