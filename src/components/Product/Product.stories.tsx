@@ -20,6 +20,6 @@ export const MainProduct = Template.bind({});
 
 MainProduct.args = {
   category: '미술품',
-  startPrice: '50,000',
+  startingPrice: '50,000',
   price: '60,000',
 };

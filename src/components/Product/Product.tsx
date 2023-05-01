@@ -6,18 +6,22 @@ import React from 'react';
 export interface ProductProps {
   itemName: string;
   category: string;
-  startPrice: string;
+  startingPrice: string;
   price: string;
   className?: string;
+  imagesSrc: string[];
 }
 
 export default function Product({
   itemName,
   category,
-  startPrice,
+  startingPrice,
   price,
   className,
+  imagesSrc,
 }: ProductProps) {
+  const imageSrcExists = imagesSrc && imagesSrc.length > 0;
+  const firstImageSrc = imageSrcExists ? imagesSrc[0] : '';
   return (
     <Link to="/detail">
       <div
@@ -26,15 +30,11 @@ export default function Product({
           className
         )}
       >
-        <Image
-          size={'sm'}
-          src={`${import.meta.env.VITE_IMAGE_PATH}/SampleImage.png`}
-          alt={'상품 이미지 입니다.'}
-        />
+        <Image size={'sm'} src={firstImageSrc} alt={'상품 이미지 입니다.'} />
         <div className="ml-2">
           <h2 className={twMerge(`text-base mt-1 font-bold`)}>{itemName}</h2>
           <p className="text-Gray text-base font-bold">{category}</p>
-          <p className="text-base font-bold">시작가 : {startPrice}원</p>
+          <p className="text-base font-bold">시작가 : {startingPrice}원</p>
           <p className="text-base font-bold">
             현재가 : <span className="text-Red">{price}원</span>
           </p>

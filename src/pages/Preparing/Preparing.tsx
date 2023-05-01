@@ -16,7 +16,7 @@ export default function Preparing({ className }: PreparingProps) {
     >
       <Header type={'guest'} />
       <div className="h-screen flex flex-col text-5xl font-bold justify-center items-center">
-        준비 중입니다. 🥲
+        진행중인 경매가 없습니다. 🥲
       </div>
     </div>
   );

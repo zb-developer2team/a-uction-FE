@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { twMerge } from 'tailwind-merge';
 import Product from '../../components/Product/Product';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { token } from '../../main';
 
 export interface SearchPageProps {
   className?: string;
@@ -10,78 +12,25 @@ export interface SearchPageProps {
 export interface ProductData {
   itemName: string;
   category: string;
-  startPrice: string;
+  startingPrice: string;
   price: string;
+  imagesSrc: string[];
 }
-
-const dummyProducts: ProductData[] = [
-  {
-    itemName: 'Dior 디올 레이디백',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
-  },
-  {
-    itemName: 'Dior 디올 레이디백',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
-  },
-  {
-    itemName: 'Dior 디올 레이디백',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
-  },
-  {
-    itemName: 'Dior 디올 레이디백',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
-  },
-  {
-    itemName: 'Dior 디올 레이디백',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
-  },
-  {
-    itemName: 'Dior 디올 레이디백',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
-  },
-  {
-    itemName: 'Dior 디올 레이디백',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
-  },
-  {
-    itemName: 'Dior 디올 레이디백',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '120,000',
-  },
-  {
-    itemName: 'Apple 정품 아이폰 14 Pro 자급제',
-    category: 'ETC',
-    startPrice: '5000',
-    price: '5,000',
-  },
-];
 
 export default function SearchPage({ className }: Partial<SearchPageProps>) {
   const [products, setProducts] = useState<ProductData[]>([]);
-  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      // const response = await axios.get('/auctions/my-auctions');
-      // setProducts(response.data);
-
-      setProducts(dummyProducts);
-      setCount(dummyProducts.length);
+      const response = await axios.get(
+        'https://dev2team-server.site/auctions/',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setProducts(response.data);
     };
     fetchData();
   }, []);
@@ -115,8 +64,9 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
                     key={index}
                     itemName={product.itemName}
                     category={product.category}
-                    startPrice={product.startPrice}
+                    startingPrice={product.startingPrice}
                     price={product.price}
+                    imagesSrc={product.imagesSrc}
                   />
                 </div>
               ))}
