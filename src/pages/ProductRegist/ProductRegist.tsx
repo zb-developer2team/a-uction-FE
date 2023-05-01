@@ -89,11 +89,13 @@ export default function Regist({
         description: productInfo,
       })
     );
-    formData.append('files', file);
-    // for (let i = 0; i < files.length; i++) {
-    //   formData.append(`files[${i}]`, files[i]);
-    // }
+    // console.log(files);
+    console.log(file);
 
+    formData.append('files', file);
+    for (let i = 0; i < files.length; i++) {
+      formData.append(`files[${i}]`, files[i]);
+    }
     axios
       .post(`https://dev2team-server.site/auctions`, formData, {
         headers: {
@@ -105,13 +107,12 @@ export default function Regist({
       })
       .then((response) => {
         console.log(response);
-        // navigate('/mypage'); // TODO CHANGE: 정상적으로 api를 응답받았을 경우 여기서 navigate 사용
+        navigate('/mypage');
       })
       .catch((error) => {
         console.error(error);
         // TODO: 에러 처리를 추가합니다.
       });
-    navigate('/mypage'); // 일시적으로 사용
   };
 
   return (

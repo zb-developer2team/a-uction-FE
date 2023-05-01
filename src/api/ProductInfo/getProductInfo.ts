@@ -21,15 +21,15 @@ const getProductInfo = async (
   try {
     const formData = new FormData();
     const { auction, files } = productInfo;
+
     formData.append('auction', JSON.stringify(auction));
     files.forEach((file) => {
       formData.append('files', file);
     });
 
-    formData.append('data', JSON.stringify(productInfo));
     const response = await axios({
       method: 'POST',
-      url: `https://dev2team-server.site`,
+      url: `https://dev2team-server.site/auctions`,
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',

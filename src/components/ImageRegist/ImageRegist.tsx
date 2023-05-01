@@ -13,7 +13,7 @@ interface ImageProps {
 export interface ImageRegistProps {
   className?: string;
   // onImageUploaded: (imageFilePath: string) => void;
-  onImageUploaded: (imageFileUrl: string) => void;
+  onImageUploaded: (file: File) => void;
 }
 
 export default function ImageRegist({
@@ -42,7 +42,7 @@ export default function ImageRegist({
       const formData = new FormData();
       formData.append('file', file);
 
-      onImageUploaded(file.name);
+      onImageUploaded(file);
     }
   };
 
