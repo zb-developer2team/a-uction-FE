@@ -15,6 +15,7 @@ import Preparing from './pages/Preparing/Preparing';
 import ProductFix from './pages/ProductFix/ProductFix';
 import Upcoming from './pages/Upcoming/Upcoming';
 import Result from './pages/Result/Result';
+import ProductDetailModify from './pages/ProductDetailModify/ProductDetailModify';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
@@ -47,6 +48,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/inform" element={<MainPage />} />
             <Route path="/modify" element={<ProductFix />} />
             <Route path="/information" element={<Information />} />
+            <Route path="/detailmodify" element={<ProductDetailModify />} />
           </Routes>
         </BrowserRouter>
       </React.StrictMode>
