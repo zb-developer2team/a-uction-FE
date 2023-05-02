@@ -62,7 +62,7 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
   return (
     <div>
       {error ? (
-        <Preparing />
+        <Preparing>진행 중인 경매가 없습니다. 🥲</Preparing>
       ) : (
         <>
           <div className="text-3xl font-bold mt-[100px] ml-[50px]">
