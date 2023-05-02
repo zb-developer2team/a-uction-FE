@@ -1,15 +1,11 @@
 import { twMerge } from 'tailwind-merge';
 
-import Image from '../../components/Image/Image';
-import React from 'react';
-
-export interface ParticipatedBiddingProps {
+export interface ErrorCodeProps {
   className?: string;
+  children?: string;
 }
 
-export default function ParticipatedBidding({
-  className,
-}: ParticipatedBiddingProps) {
+export default function ErrorCodePage({ className, children }: ErrorCodeProps) {
   return (
     <div
       className={twMerge(
@@ -17,7 +13,7 @@ export default function ParticipatedBidding({
       )}
     >
       <div className="h-screen flex flex-col text-5xl font-bold justify-center items-center">
-        내가 참여한 경매가 없습니다. 🥲
+        {children}
       </div>
     </div>
   );
