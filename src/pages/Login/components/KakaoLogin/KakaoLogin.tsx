@@ -2,6 +2,7 @@ import { twMerge } from 'tailwind-merge';
 import { useState } from 'react';
 import Button from '../../../../components/Button/Button';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export interface KakaoLoginProps {
   className?: string;
@@ -23,13 +24,15 @@ export default function KakaoLogin({ className, ...props }: KakaoLoginProps) {
       >
         카카오 계정으로 간편하게 로그인
       </p>
-      <Button
-        type={'active'}
-        label={'카카오로 시작하기'}
-        size={'medium'}
-        onClick={clickHandler}
-        className={twMerge('mx-auto my-0 bg-Yellow text-DarkGray')}
-      />
+      <Link to="https://kauth.kakao.com/oauth/authorize?client_id=5d7207c6653ad886b141602917b9dfbe&redirect_uri=https://dev2team-server.site/oauth/kakao/callback&response_type=code">
+        <Button
+          type={'active'}
+          label={'카카오로 시작하기'}
+          size={'medium'}
+          onClick={clickHandler}
+          className={twMerge('mx-auto my-0 bg-Yellow text-DarkGray')}
+        />
+      </Link>
     </>
   );
 }
