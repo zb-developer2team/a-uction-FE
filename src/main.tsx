@@ -13,6 +13,8 @@ import MyBiddingPage from './pages/MyBidding/MyBidding';
 import DepositPage from './pages/DepositPage/DepositPage';
 import Preparing from './pages/Preparing/Preparing';
 import ProductFix from './pages/ProductFix/ProductFix';
+import Upcoming from './pages/Upcoming/Upcoming';
+import Result from './pages/Result/Result';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
@@ -38,8 +40,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/mybidding" element={<MyBiddingPage />} />
             <Route path="/deposit" element={<DepositPage />} />
             <Route path="/progression" element={<SearchPage />} />
-            <Route path="/upcoming" element={<Preparing />} />
-            <Route path="/result" element={<SearchPage />} />
+            <Route path="/upcoming" element={<Upcoming />} />
+            <Route path="/result" element={<Result />} />
             <Route path="/preparing" element={<Preparing />} />
             <Route path="/inform" element={<MainPage />} />
             <Route path="/modify" element={<ProductFix />} />
