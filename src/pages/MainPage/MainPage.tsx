@@ -26,7 +26,7 @@ export default function MainPage({ children, className }: MainPageProps) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        'https://dev2team-server.site/auctions/my-auctions',
+        'https://dev2team-server.site/auctions/listAll?status=PROCEEDING',
         {
           headers: {
             Authorization: `Bearer ${token}`,
