@@ -74,7 +74,7 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
                   {row.map((product, index) => (
                     <div
                       className={twMerge(
-                        `w-full sm:w-1/2 md:w-1/4 mb-16 ${
+                        `w-full sm:w-1/2 md:w-1/4 mb-16 relative ${
                           index !== row.length - 1 ? 'sm:mr-2' : ''
                         }`
                       )}
@@ -88,6 +88,9 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
                         price={'0'}
                         imagesSrc={product.imagesSrc}
                       />
+                      <div className="flex justify-center items-center w-[240px] h-[240px] text-4xl text-center bg-Gray/70 text-Red absolute top-0 left-0">
+                        <p className="px-3 bg-White/50 rounded-sm">SOLD OUT</p>
+                      </div>
                     </div>
                   ))}
                 </div>
