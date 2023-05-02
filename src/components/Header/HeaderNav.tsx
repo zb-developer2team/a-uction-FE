@@ -25,6 +25,10 @@ export default function HeaderNav({
     ],
   };
 
+  const activeStyle = {
+    color: '#de6b5a',
+  };
+
   return (
     <ul
       className={twMerge(
@@ -33,13 +37,53 @@ export default function HeaderNav({
       )}
       {...props}
     >
-      <NavLink to="/">홈</NavLink>
-      <NavLink to="/progression">진행 중인 경매</NavLink>
-      <NavLink to="/upcoming">예정 경매</NavLink>
-      <NavLink to="/result">지난 경매</NavLink>
-      <NavLink to="/information">경매 안내</NavLink>
-      {type === 'member' ? <NavLink to="/mypage">마이페이지</NavLink> : ''}
-      {type === 'member' ? <NavLink to="/regist">물품 등록</NavLink> : ''}
+      <NavLink style={({ isActive }) => (isActive ? activeStyle : {})} to="/">
+        홈
+      </NavLink>
+      <NavLink
+        style={({ isActive }) => (isActive ? activeStyle : {})}
+        to="/progression"
+      >
+        진행 중인 경매
+      </NavLink>
+      <NavLink
+        style={({ isActive }) => (isActive ? activeStyle : {})}
+        to="/upcoming"
+      >
+        예정 경매
+      </NavLink>
+      <NavLink
+        style={({ isActive }) => (isActive ? activeStyle : {})}
+        to="/result"
+      >
+        지난 경매
+      </NavLink>
+      <NavLink
+        style={({ isActive }) => (isActive ? activeStyle : {})}
+        to="/information"
+      >
+        경매 안내
+      </NavLink>
+      {type === 'member' ? (
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : {})}
+          to="/mypage"
+        >
+          마이페이지
+        </NavLink>
+      ) : (
+        ''
+      )}
+      {type === 'member' ? (
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : {})}
+          to="/regist"
+        >
+          물품 등록
+        </NavLink>
+      ) : (
+        ''
+      )}
     </ul>
   );
 }
