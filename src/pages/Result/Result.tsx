@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { token } from '../../main';
 import Image from '../../components/Image/Image';
 import Preparing from '../Preparing/Preparing';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 export interface SearchPageProps {
   className?: string;
@@ -66,7 +67,16 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
       ) : (
         <>
           <Header type={'guest'} />
-          <div className="flex text-5xl font-bold justify-center items-center"></div>
+          <div className="text-3xl font-bold mt-[100px] ml-[50px]">
+            총 {count}건이 종료되었습니다.
+          </div>
+          <div
+            className={twMerge(
+              `flex justify-end absolute mt-10 right-0 mr-20 z-50`
+            )}
+          >
+            <Dropdown type={'sort'} />
+          </div>
           <div>
             <div className="flex justify-evenly flex-wrap ml-24 mt-32 mb-10">
               {productRows.map((row, rowIndex) => (
