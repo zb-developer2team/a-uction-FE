@@ -96,7 +96,7 @@ export default function MainPage({ children, className }: MainPageProps) {
         </div>
       </div>
       <div className="text-2xl font-bold mt-20 ml-10">인기 많은 경매 상품</div>
-      <div className="flex absolute justify-evenly flex-wrap ml-24 mt-32 mb-10">
+      <div className="flex justify-evenly flex-wrap ml-24 mt-32 mb-10">
         {productRows.map((row, rowIndex) => (
           <div className="flex w-full z-1" key={rowIndex}>
             {row.map((product, index) => (
