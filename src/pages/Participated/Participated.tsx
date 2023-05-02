@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { twMerge } from 'tailwind-merge';
 import Product from '../../components/Product/Product';
-import ParticipatedBidding from '../../pages/ParticipatedBidding/ParticipatedBidding';
-
-import React from 'react';
+import ErrorCodePage from '../ErrorCodePage/ErrorCodePage';
 import { useEffect, useState } from 'react';
 import { token } from '../../main';
 
@@ -59,7 +57,7 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
   return (
     <div>
       {error ? (
-        <ParticipatedBidding />
+        <ErrorCodePage>내가 참여한 경매가 없습니다. 🥲</ErrorCodePage>
       ) : (
         <>
           <div className="relative">
