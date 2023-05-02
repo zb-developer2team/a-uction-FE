@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { twMerge } from 'tailwind-merge';
-import Product from '../../components/Product/Product';
+import RegisteredProduct from '../../components/RegisteredProduct/RegisteredProduct';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { token } from '../../main';
@@ -60,7 +60,7 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
                   )}
                   key={`product-${index}`}
                 >
-                  <Product
+                  <RegisteredProduct
                     key={index}
                     itemName={product.itemName}
                     category={product.category}
