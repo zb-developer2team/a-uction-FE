@@ -1,1 +1,1 @@
-export * from './ParticipatedBidding';
+export * from './ErrorCodePage';

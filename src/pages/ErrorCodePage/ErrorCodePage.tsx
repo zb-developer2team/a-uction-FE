@@ -1,8 +1,5 @@
 import { twMerge } from 'tailwind-merge';
 
-import Image from '../../components/Image/Image';
-import React from 'react';
-
 export interface ErrorCodeProps {
   className?: string;
   children?: string;
