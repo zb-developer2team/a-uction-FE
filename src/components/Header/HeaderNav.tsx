@@ -37,7 +37,7 @@ export default function HeaderNav({
       <NavLink to="/progression">진행 중인 경매</NavLink>
       <NavLink to="/upcoming">예정 경매</NavLink>
       <NavLink to="/result">지난 경매</NavLink>
-      <NavLink to="/inform">경매 안내</NavLink>
+      <NavLink to="/information">경매 안내</NavLink>
       {type === 'member' ? <NavLink to="/mypage">마이페이지</NavLink> : ''}
       {type === 'member' ? <NavLink to="/regist">물품 등록</NavLink> : ''}
     </ul>

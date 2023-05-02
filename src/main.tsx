@@ -18,6 +18,7 @@ import Result from './pages/Result/Result';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
+import Information from './pages/Information/Information';
 
 export const token =
   'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJhZG1pbkBhYmMuY29tIiwic3ViIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2ODI2MDYwODcsImV4cCI6MTY4MjYwOTY4N30.ZSRZfUQqRrOkT-swd15M-dYLJnaBjXtBeqVS4VeMyfM';
@@ -45,6 +46,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/preparing" element={<Preparing />} />
             <Route path="/inform" element={<MainPage />} />
             <Route path="/modify" element={<ProductFix />} />
+            <Route path="/information" element={<Information />} />
           </Routes>
         </BrowserRouter>
       </React.StrictMode>
