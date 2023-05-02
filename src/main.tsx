@@ -21,7 +21,7 @@ import { RecoilRoot } from 'recoil';
 import Information from './pages/Information/Information';
 
 export const token =
-  'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJhZG1pbkBhYmMuY29tIiwic3ViIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2ODI2MDYwODcsImV4cCI6MTY4MjYwOTY4N30.ZSRZfUQqRrOkT-swd15M-dYLJnaBjXtBeqVS4VeMyfM';
+  'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJhZG1pbkBhYmMuY29tIiwic3ViIjoiQWNjZXNzVG9rZW4iLCJpYXQiOjE2ODMwMTUzOTYsImV4cCI6MTY4NDIyNDk5Nn0.UnOxTXZrDjrEoyPYthztF7rUgaS9qCtLwlI-sUkMb0A';
 
 const queryClient = new QueryClient();
 
