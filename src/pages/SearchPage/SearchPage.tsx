@@ -65,18 +65,19 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
         <Preparing>진행 중인 경매가 없습니다. 🥲</Preparing>
       ) : (
         <>
+          <Header type={'guest'} />
           <div className="text-3xl font-bold mt-[100px] ml-[50px]">
-            총 {count}건이 검색되었습니다.
+            총 {count}건이 진행 중입니다.
+          </div>
+          <div
+            className={twMerge(
+              `flex justify-end absolute mt-10 right-0 mr-20 z-50`
+            )}
+          >
+            <Dropdown type={'sort'} />
           </div>
           <div className="relative">
-            <div
-              className={twMerge(
-                `flex justify-end absolute mt-10 right-0 mr-20 z-50`
-              )}
-            >
-              <Dropdown type={'sort'} />
-            </div>
-            <div className="flex absolute justify-evenly flex-wrap ml-24 mt-32 mb-10">
+            <div className="flex justify-evenly flex-wrap ml-24 mt-32 mb-10">
               {productRows.map((row, rowIndex) => (
                 <div className="flex w-full z-1" key={rowIndex}>
                   {row.map((product, index) => (
