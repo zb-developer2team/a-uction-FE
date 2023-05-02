@@ -5,9 +5,10 @@ import React from 'react';
 
 export interface PreparingProps {
   className?: string;
+  children?: string;
 }
 
-export default function Preparing({ className }: PreparingProps) {
+export default function Preparing({ className, children }: PreparingProps) {
   return (
     <div
       className={twMerge(
@@ -16,7 +17,7 @@ export default function Preparing({ className }: PreparingProps) {
     >
       <Header type={'guest'} />
       <div className="h-screen flex flex-col text-5xl font-bold justify-center items-center">
-        진행중인 경매가 없습니다. 🥲
+        {children}
       </div>
     </div>
   );
