@@ -64,31 +64,52 @@ export default function Regist({
       productInfo !== '' &&
       status !== '' &&
       startDateTime !== '' &&
-      endDateTime !== '';
+      endDateTime !== '' &&
+      file !== null;
     if (!allInputsFilled) {
       alert('모든 입력값을 입력해주세요.');
       return;
     }
 
-    getFixInfo({
-      itemName: productName,
-      itemStatus: status,
-      startingPrice: productPrice ?? 0,
-      minimumBid: minBidPrice,
-      category: category,
-      startDateTime: startDateTime,
-      endDateTime: endDateTime,
-      description: productInfo,
-    })
+    const formData = new FormData();
+
+    const files = Array.from(formData.getAll('files'));
+    formData.append(
+      'auction',
+      JSON.stringify({
+        itemName: productName,
+        itemStatus: status,
+        startingPrice: productPrice,
+        minimumBid: minBidPrice,
+        category,
+        startDateTime,
+        endDateTime,
+        description: productInfo,
+      })
+    );
+    // console.log(files);
+    console.log(file);
+
+    formData.append('files', file);
+    for (let i = 0; i < files.length; i++) {
+      formData.append(`files[${i}]`, files[i]);
+    }
+    axios
+      .post(`https://dev2team-server.site/auctions/update?65`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+          credential: true,
+          mode: 'same-origin',
+        },
+      })
       .then((response) => {
         console.log(response);
-        // navigate('/mypage'); // TODO CHANGE: 정상적으로 api를 응답받았을 경우 여기서 navigate 사용
+        navigate('/mypage');
       })
       .catch((error) => {
         console.error(error);
-        // TODO: 에러 처리를 추가합니다.
       });
-    navigate('/mypage'); // 일시적으로 사용
   };
 
   return (
