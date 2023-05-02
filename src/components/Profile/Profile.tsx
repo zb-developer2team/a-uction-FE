@@ -1,6 +1,9 @@
 import { twMerge } from 'tailwind-merge';
 import Button from '../Button/Button';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import DepositPage from '../../pages/DepositPage/DepositPage';
+
 import React from 'react';
 
 export interface ProfileProps {
@@ -30,13 +33,15 @@ export default function Profile({
       <div className="text-lg font-bold mb-4 flex items-center">
         <span className="text-Bluegreen mr-4">예치금</span>
         <span className="mr-4">{deposit}원</span>
-        <Button
-          type="active"
-          size="xsmall"
-          label={'내역보기'}
-          onClick={handleButtonClick}
-          className="text-sm"
-        />
+        <Link to="/deposit">
+          <Button
+            type="active"
+            size="xsmall"
+            label={'내역보기'}
+            onClick={handleButtonClick}
+            className="text-sm"
+          ></Button>
+        </Link>
       </div>
       <div>
         <span className="text-lg font-bold text-Bluegreen mr-4">소개</span>
