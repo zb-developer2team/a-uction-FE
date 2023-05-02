@@ -5,6 +5,8 @@ import Header from '../../components/Header/Header';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { token } from '../../main';
+import Image from '../../components/Image/Image';
+import Preparing from '../Preparing/Preparing';
 
 export interface SearchPageProps {
   className?: string;
@@ -20,18 +22,29 @@ export interface ProductData {
 
 export default function SearchPage({ className }: Partial<SearchPageProps>) {
   const [products, setProducts] = useState<ProductData[]>([]);
+  const [count, setCount] = useState<number>(0);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        'https://dev2team-server.site/auctions/listAll?status=COMPLETED',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      try {
+        const response = await axios.get(
+          'https://dev2team-server.site/auctions/listAll?status=COMPLETED',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.data.content.length === 0) {
+          setError('NOT_FOUND_AUCTION_STATUS_LIST');
+        } else {
+          setProducts(response.data.content);
+          setCount(response.data.content.length);
         }
-      );
-      setProducts(response.data.content);
+      } catch (err: any) {
+        setError(err.response?.data?.errorCode || 'UNKNOWN_ERROR');
+      }
     };
     fetchData();
   }, []);
@@ -48,35 +61,41 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
 
   return (
     <div>
-      <Header type={'guest'} />
-      <div className="flex text-5xl font-bold justify-center items-center"></div>
-      <div>
-        <div className="flex justify-evenly flex-wrap ml-24 mt-32 mb-10">
-          {productRows.map((row, rowIndex) => (
-            <div className="flex w-full z-1" key={rowIndex}>
-              {row.map((product, index) => (
-                <div
-                  className={twMerge(
-                    `w-full sm:w-1/2 md:w-1/4 mb-16 ${
-                      index !== row.length - 1 ? 'sm:mr-2' : ''
-                    }`
-                  )}
-                  key={`product-${index}`}
-                >
-                  <Product
-                    key={index}
-                    itemName={product.itemName}
-                    category={product.category}
-                    startingPrice={product.startingPrice}
-                    price={'0'}
-                    imagesSrc={product.imagesSrc}
-                  />
+      {error ? (
+        <Preparing>마감된 경매가 없습니다. 🥲</Preparing>
+      ) : (
+        <>
+          <Header type={'guest'} />
+          <div className="flex text-5xl font-bold justify-center items-center"></div>
+          <div>
+            <div className="flex justify-evenly flex-wrap ml-24 mt-32 mb-10">
+              {productRows.map((row, rowIndex) => (
+                <div className="flex w-full z-1" key={rowIndex}>
+                  {row.map((product, index) => (
+                    <div
+                      className={twMerge(
+                        `w-full sm:w-1/2 md:w-1/4 mb-16 ${
+                          index !== row.length - 1 ? 'sm:mr-2' : ''
+                        }`
+                      )}
+                      key={`product-${index}`}
+                    >
+                      <Product
+                        key={index}
+                        itemName={product.itemName}
+                        category={product.category}
+                        startingPrice={product.startingPrice}
+                        price={'0'}
+                        imagesSrc={product.imagesSrc}
+                      />
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
