@@ -5,12 +5,14 @@ import { useEffect, useState } from 'react';
 import Preparing from '../../pages/Preparing/Preparing';
 import { token } from '../../main';
 import ErrorCodePage from '../ErrorCodePage/ErrorCodePage';
+import { Link } from 'react-router-dom';
 
 export interface SearchPageProps {
   className?: string;
 }
 
 export interface ProductData {
+  auctionId: string | number;
   itemName: string;
   category: string;
   startingPrice: string;
@@ -74,14 +76,17 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
                       )}
                       key={`product-${index}`}
                     >
-                      <Product
-                        key={index}
-                        itemName={product.itemName}
-                        category={product.category}
-                        startingPrice={product.startingPrice}
-                        price={product.price}
-                        imagesSrc={product.imagesSrc}
-                      />
+                      <Link to={`/detail/${product.auctionId}`}>
+                        <Product
+                          auctionId={product.auctionId}
+                          key={index}
+                          itemName={product.itemName}
+                          category={product.category}
+                          startingPrice={product.startingPrice}
+                          price={product.price}
+                          imagesSrc={product.imagesSrc}
+                        />
+                      </Link>
                     </div>
                   ))}
                 </div>

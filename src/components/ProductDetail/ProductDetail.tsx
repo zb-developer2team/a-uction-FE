@@ -4,11 +4,27 @@ import Title from '../Title/Title';
 import CategoryDetail from '../CategoryDetail/CategoryDetail';
 import ProductTime from '../ProductTime/ProductTime';
 import ProductPrice from '../ProductPrice/ProductPrice';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export interface ProductDetailProps {
   children?: string;
   className?: string;
+  auctionId?: string;
+}
+
+export interface ProductData {
+  itemStatus: string;
+  auctionId: string | number;
+  itemName: string;
+  category: string;
+  startingPrice: string;
+  price: string;
+  imagesSrc: string[];
+  startDateTime: string;
+  endDateTime: string;
+  description: string;
 }
 
 export default function ProductDetail({
@@ -16,6 +32,42 @@ export default function ProductDetail({
   className,
   ...props
 }: ProductDetailProps) {
+  const [list, setList] = useState<ProductData[]>([]);
+
+  useEffect(() => {
+    const getList = async () => {
+      try {
+        const result = await axios
+          .all([
+            axios.get(
+              `https://dev2team-server.site/auctions/listAll?status=SCHEDULED`
+            ),
+            axios.get(
+              `https://dev2team-server.site/auctions/listAll?status=PROCEEDING`
+            ),
+            axios.get(
+              `https://dev2team-server.site/auctions/listAll?status=COMPLETED`
+            ),
+          ])
+          .then(
+            axios.spread((res1, res2, res3) => {
+              const response1 = res1.data.content;
+              const response2 = res2.data.content;
+              const response3 = res3.data.content;
+              const response = [...response1, ...response2, ...response3];
+              setList(response);
+            })
+          );
+      } catch (err) {
+        console.error(err);
+        console.log('실패');
+      }
+    };
+    getList();
+  }, []);
+
+  const item = list.find((items) => items?.auctionId === +props?.auctionId);
+
   return (
     <>
       <div
@@ -27,19 +79,19 @@ export default function ProductDetail({
         <div>
           <Image
             size={'lg'}
-            src={`${import.meta.env.VITE_IMAGE_PATH}/SampleImage.png`}
+            src={item?.imagesSrc}
             alt={'상품 이미지 입니다.'}
           />
         </div>
         <div className={twMerge(`w-[420px] ml-10`)}>
           <h2 className={twMerge(`border-b-[1px] pb-5`)}>
-            <Title />
+            <Title>{item?.itemName}</Title>
           </h2>
           <div>
             <CategoryDetail
-              category={'category'}
-              status={'새상품'}
-              description={'새상품이지만 눈물 머금고 내놓기'}
+              category={item?.category}
+              status={item?.itemStatus}
+              description={item?.description}
             />
           </div>
           <div>
@@ -50,8 +102,8 @@ export default function ProductDetail({
           </div>
           <div>
             <ProductPrice
-              price={'5,000'}
-              startPrice={'6,000'}
+              price={'100'}
+              startPrice={item?.startingPrice}
               type={'member'}
             />
           </div>

@@ -6,6 +6,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { token } from '../../main';
+import { Link } from 'react-router-dom';
 
 export interface MainPageProps {
   children?: string;
@@ -13,6 +14,7 @@ export interface MainPageProps {
 }
 
 export interface ProductData {
+  auctionId: string | number;
   itemName: string;
   category: string;
   startingPrice: string;
@@ -74,14 +76,17 @@ export default function MainPage({ children, className }: MainPageProps) {
                   )}
                   key={`product-${index}`}
                 >
-                  <Product
-                    key={index}
-                    itemName={product.itemName}
-                    category={product.category}
-                    startingPrice={product.startingPrice}
-                    price={product.price}
-                    imagesSrc={product.imagesSrc}
-                  />
+                  <Link to={`/detail/${product.auctionId}`}>
+                    <Product
+                      auctionId={product.auctionId}
+                      key={index}
+                      itemName={product.itemName}
+                      category={product.category}
+                      startingPrice={product.startingPrice}
+                      price={product.price}
+                      imagesSrc={product.imagesSrc}
+                    />
+                  </Link>
                 </div>
               ))}
             </div>
