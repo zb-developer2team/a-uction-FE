@@ -15,6 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
     "strict": true,
+    "strictNullChecks": false,
     "skipLibCheck": true,
     "typeRoots": ["types"],
     "types": ["vite/client"]

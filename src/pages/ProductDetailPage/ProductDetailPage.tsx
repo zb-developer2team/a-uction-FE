@@ -1,15 +1,34 @@
 import { twMerge } from 'tailwind-merge';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import ProductDetail from '../../components/ProductDetail/ProductDetail';
 import Button from '../../components/Button/Button';
 import React from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export interface ProductDetailProps {
   className?: string;
+  product?: string;
 }
 
-export default function ProductDetailPage({ className }: ProductDetailProps) {
+export interface ProductData {
+  itemStatus: string;
+  auctionId: string | number;
+  itemName: string;
+  category: string;
+  startingPrice: string;
+  price: string;
+  imagesSrc: string[];
+  startDateTime: string;
+  endDateTime: string;
+  description: string;
+}
+
+export default function ProductDetailPage({
+  className,
+  ...props
+}: ProductDetailProps) {
   const [joinAuction, setJoinAuction] = useState(true);
   //경매 참여하는 상태관리는 임의로 작성하였습니다.
 
@@ -19,11 +38,13 @@ export default function ProductDetailPage({ className }: ProductDetailProps) {
 
   const buttonLabel = joinAuction ? '경매 참여하기' : '경매 참여 완료';
 
+  const { auctionId } = useParams();
+
   return (
     <div className={twMerge(`w-screen`)}>
       <Header type={'guest'} />
       <div>
-        <ProductDetail />
+        <ProductDetail auctionId={auctionId} />
         <div className={twMerge(`w-[856px] my-0 mx-auto text-right`)}>
           {joinAuction ? (
             <Button

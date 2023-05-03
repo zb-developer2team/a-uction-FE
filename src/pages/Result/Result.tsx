@@ -8,12 +8,14 @@ import { token } from '../../main';
 import Image from '../../components/Image/Image';
 import Preparing from '../Preparing/Preparing';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import { Link } from 'react-router-dom';
 
 export interface SearchPageProps {
   className?: string;
 }
 
 export interface ProductData {
+  auctionId: string | number;
   itemName: string;
   category: string;
   startingPrice: string;
@@ -90,14 +92,17 @@ export default function SearchPage({ className }: Partial<SearchPageProps>) {
                       )}
                       key={`product-${index}`}
                     >
-                      <Product
-                        key={index}
-                        itemName={product.itemName}
-                        category={product.category}
-                        startingPrice={product.startingPrice}
-                        price={'0'}
-                        imagesSrc={product.imagesSrc}
-                      />
+                      <Link to={`/detail/${product.auctionId}`}>
+                        <Product
+                          auctionId={product.auctionId}
+                          key={index}
+                          itemName={product.itemName}
+                          category={product.category}
+                          startingPrice={product.startingPrice}
+                          price={'0'}
+                          imagesSrc={product.imagesSrc}
+                        />
+                      </Link>
                       <div className="flex justify-center items-center w-[240px] h-[240px] text-4xl text-center bg-Gray/70 text-Red absolute top-0 left-0">
                         <p className="px-3 bg-White/50 rounded-sm">SOLD OUT</p>
                       </div>

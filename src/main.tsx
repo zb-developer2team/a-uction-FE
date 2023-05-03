@@ -38,7 +38,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/search" element={<SearchPage />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/regist" element={<Regist />} />
-            <Route path="/detail" element={<ProductDetailPage />} />
+            <Route
+              path="/detail/:auctionId"
+              element={<ProductDetailPage product={'product'} />}
+            />
             <Route path="/mybidding" element={<MyBiddingPage />} />
             <Route path="/deposit" element={<DepositPage />} />
             <Route path="/progression" element={<SearchPage />} />
