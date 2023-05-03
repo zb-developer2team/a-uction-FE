@@ -68,6 +68,34 @@ export default function ProductDetail({
 
   const item = list.find((items) => items?.auctionId === +props?.auctionId);
 
+  console.log(new Date(item?.startDateTime));
+
+  const startYear = new Date(item?.startDateTime).getFullYear();
+  const startMonth = new Date(item?.startDateTime).getMonth() + 1;
+  const startDate = new Date(item?.startDateTime).getDate();
+  const startHour = new Date(item?.startDateTime).getHours();
+  const startMinute = new Date(item?.startDateTime).getMinutes();
+
+  const startTime =
+    startYear +
+    '.' +
+    startMonth +
+    '.' +
+    startDate +
+    ' ' +
+    startHour +
+    ':' +
+    startMinute;
+
+  const endYear = new Date(item?.endDateTime).getFullYear();
+  const endMonth = new Date(item?.endDateTime).getMonth() + 1;
+  const endDate = new Date(item?.endDateTime).getDate();
+  const endHour = new Date(item?.endDateTime).getHours();
+  const endMinute = new Date(item?.endDateTime).getMinutes();
+
+  const endTime =
+    endYear + '.' + endMonth + '.' + endDate + ' ' + endHour + ':' + endMinute;
+
   return (
     <>
       <div
@@ -97,7 +125,7 @@ export default function ProductDetail({
           <div>
             <ProductTime
               remainTime={'2일 5시간 22분'}
-              auctionPeriod={'2023.04.01 10:00 ~ 2023.04.23 14:00'}
+              auctionPeriod={startTime + ' ' + '~' + ' ' + endTime}
             />
           </div>
           <div>
